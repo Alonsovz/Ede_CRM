@@ -1,0 +1,69 @@
+<div class="row">
+    <div class="ibox">
+        <div class="ibox-heading">
+            <div class="ibox-title">
+
+            </div>
+        </div>
+        <div class="ibox-content">
+            <div class="row">
+                <div class="col-lg-12">
+                    <form action="" class="form-horizontal">
+                        <h1><b><i class="fas fa-bell"></i> Nuevo reminder</b></h1>
+                        <div class="row" style="margin-top: 25px">
+                            <div class="col-lg-8" style="margin-left: 10px">
+                                <div class="form-group">
+                                    <label for="">Reminder:</label>
+                                    <textarea placeholder="Digite la descripcion de su reminder"  ng-model="formreminder.descripcion " class="form-control" name="" id="" cols="8" rows="5"></textarea>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-4" style="margin-left: 10px">
+                                <div class="form-group">
+                                    <label for="">Fecha:</label>
+                                    <input  type="text" ng-model="formreminder.fecha | amDateFormat:'DD/MM/YYYY h:mm'" class="form-control">
+                                    <datetimepicker   style="margin-left: 5px" data-ng-model="formreminder.fecha" ></datetimepicker>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row" style="background-color: lightgrey">
+                            <div class="col-lg-4" style="margin-left: 10px;margin-top: 10px">
+                                <div class="form-group">
+                                    <button ng-click="guardarreminder()" class="btn btn-primary"><i class="fas fa-save"></i> Guardar Reminder</button>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+        </div>
+        <div class="ibox-footer" ng-hide="alertareminder">
+            <div class="row alert alert-success">
+                <h3><i class="fas fa-info-circle"></i> Reminder creado con exito!</h3>
+            </div>
+        </div>
+        <div class="ibox-footer">
+            <div class="row">
+                <div class="col-lg-12" style="margin-top: 20px">
+                    <table class="table table-bordered" >
+                        <thead>
+                        <tr>
+                            <th class="text-center" style="border:solid 1px black; background-color: black; color: white;">Reminder</th>
+                            <th class="text-center" style="border:solid 1px black; background-color: black; color: white;">Fecha</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr ng-repeat="reminder in reminders">
+                            <td style="border:solid 1px">{{reminder.descripcion}}</td>
+                            <td class="text-center" style="border:solid 1px">{{reminder.fechasolicitud | amDateFormat:'DD/MM/YYYY'}}</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

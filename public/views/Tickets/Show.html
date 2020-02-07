@@ -1,0 +1,225 @@
+<div class="row">
+    <div class="panel panel-default" style="border:solid 1px lightgrey">
+        <div class="panel-heading" style="height: 100px">
+            <div class="panel-title">
+                <ul class="nav nav-tabs">
+
+                    <li class="active">
+                        <a data-toggle="tab" href=".tabMyT">
+                            <button id=""> 
+                            <i class="fa fa-ticket-alt"></i> <i class="fa fa-user" ></i> Mis tickets
+                            </button>
+                        </a>
+                    </li>
+                    <li class="">
+                        <a data-toggle="tab" href=".tabOthersT">
+                            <button id=""> 
+                                <i class="fa fa-ticket-alt"></i>  <i class="fa fa-users"></i> Tickets de otros usuarios a mis clientes
+                            </button>
+                        </a>
+                    </li>
+              </ul>
+                
+                
+            </div>
+        </div>
+
+        <div class="tab-content">
+            <div class="tab-pane active tabMyT">
+                <div class="col-lg-8" style="background-color: #910439; color: white;
+                font-size: 18px;">
+                    <i class="fa fa-ticket-alt" ></i><i class="fa fa-user" ></i> <b >Mis Tickets realizados a mis clientes</b>
+                </div><br><br><br><br>
+                <table datatable="ng" dt-options="dtOptions" class="table table-responsive table-bordered">
+                    <thead>
+                     <tr>
+                         <th class="text-center">ID de evento</th>
+                         <th class="text-center">ID de ticket</th>
+                         <th class="text-center">Usuario asignado</th>
+                         <th class="text-center">Descripción</th>
+                         <th class="text-center"><i class="fas fa-calendar-alt"></i> Solicitud</th>
+                         <th class="text-center"><i class="fas fa-calendar-alt"></i> Fecha de entrega acordada</th>
+                         <th class="text-center"><i class=""></i> Estado</th>
+                         <th class="text-center"><i class="fas fa-clock"></i> Tiempo dedicado</th>
+                         <th class="text-center"><i class="fas fa-calendar-alt"></i> Fecha de solucion</th>
+                         <th class="text-center"><i class="fas fa-calendar-alt"></i> Detalle</th>
+                     </tr>
+                    </thead>
+     
+                     <tbody>
+                         <tr ng-repeat="ticket in tickets">
+                             <td class="text-center">{{ticket.evento_id}}</td>
+                             <td class="text-center">{{ticket.id}}</td>
+                             <td>{{ticket.nombreasignado}} {{ticket.apellidoasignado}}</td>
+                             <td>
+                                 <div style="width:100%; max-height:100px; overflow:auto">
+                                     {{ticket.descripcion}}
+                                 </div>
+                             </td>
+                             <td class="text-center">{{ticket.fechasolicitud | amDateFormat:'DD/MM/YYYY H:mm'}}</td>
+                             <td class="text-center">{{ticket.fechasolaprox | amDateFormat:'DD/MM/YYYY H:mm'}}</td>
+                             <td class="text-center">{{ticket.estado}}</td>
+                             <td class="text-center">{{ticket.tiempodedicado * 60}} minutos</td>
+                             <td class="text-center">{{ticket.fechasolucion | amDateFormat:'DD/MM/YYYY H:mm'}}</td>
+                             <td class="text-center"><button ng-click="verdetalleticket(ticket)" class="btn btn-xs btn-white" style="border:solid 1px black"><i class="fas fa-eye"> </i> Ver detalle</button></td>
+                         </tr>
+     
+                     </tbody>
+                 </table>
+            </div>
+
+
+            <div class="tab-pane  tabOthersT">
+                <div class="col-lg-8" style="background-color: #897A08; color: white;
+                font-size: 18px;">
+                    <i class="fa fa-ticket-alt" ></i><i class="fa fa-users" ></i> <b >Tickets realizados a mis clientes
+                        por otros usuarios
+                    </b>
+                </div><br><br><br><br>
+                <table datatable="ng" dt-options="dtOptions" class="table table-responsive table-bordered">
+                    <thead>
+                     <tr>
+                         <th class="text-center">ID de evento</th>
+                         <th class="text-center">ID de ticket</th>
+                         <th class="text-center">Usuario asignado</th>
+                         <th class="text-center">Descripción</th>
+                         <th class="text-center"><i class="fas fa-calendar-alt"></i> Solicitud</th>
+                         <th class="text-center"><i class="fas fa-calendar-alt"></i> Fecha de entrega acordada</th>
+                         <th class="text-center"><i class=""></i> Estado</th>
+                         <th class="text-center"><i class="fas fa-user"></i>Usuario creador</th>
+                         <th class="text-center"><i class="fas fa-calendar-alt"></i> Fecha de solucion</th>
+                         <th class="text-center"><i class="fas fa-calendar-alt"></i> Detalle</th>
+                     </tr>
+                    </thead>
+     
+                     <tbody>
+                         <tr ng-repeat="ticket in ticketsCl">
+                             <td class="text-center">{{ticket.evento_id}}</td>
+                             <td class="text-center">{{ticket.id}}</td>
+                             <td>{{ticket.nombreasignado}} {{ticket.apellidoasignado}}</td>
+                             <td>
+                                 <div style="width:100%; max-height:100px; overflow:auto">
+                                     {{ticket.descripcion}}
+                                 </div>
+                             </td>
+                             <td class="text-center">{{ticket.fechasolicitud | amDateFormat:'DD/MM/YYYY H:mm'}}</td>
+                             <td class="text-center">{{ticket.fechasolaprox | amDateFormat:'DD/MM/YYYY H:mm'}}</td>
+                             <td class="text-center">{{ticket.estado}}</td>
+                             <td class="text-center">
+                                <div  style="background-color:#171287; color:white;
+                                font-weight:bold">
+                                    {{ticket.usuario_creacion}}
+                                </div>
+                            </td>
+                             <td class="text-center">{{ticket.fechasolucion | amDateFormat:'DD/MM/YYYY H:mm'}}</td>
+                             <td class="text-center"><button ng-click="verdetalleticket(ticket)" class="btn btn-xs btn-white" style="border:solid 1px black"><i class="fas fa-eye"> </i> Ver detalle</button></td>
+                         </tr>
+     
+                     </tbody>
+                 </table>
+            </div>
+        </div>
+
+        
+
+        <div class="panel-footer" ng-hide="formulariodetallesticket">
+            <form action="" class="form-horizontal">
+
+
+            <div class="row">
+
+                <h2><i class="fas fa-file-text"></i> Detalles</h2>
+                <div class="col-lg-7">
+                    <div class="row">
+                        <div class="col-lg-4" style="margin-left: 10px">
+                            <div class="form-group">
+                                <label for="">ID de evento:</label>
+                                <input type="text" class="form-control" readonly="readonly"  ng-model="formticket.evento_id">
+                            </div>
+                        </div>
+
+                        <div class="col-lg-4" style="margin-left: 10px">
+                            <div class="form-group">
+                                <label for="">ID:</label>
+                                <input type="text" readonly="readonly" class="form-control"  ng-model="formticket.id" >
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-4" style="margin-left: 10px">
+                            <div class="form-group">
+                                <label for="">Titulo:</label>
+                                <input type="text" readonly="readonly" class="form-control"  ng-model="formticket.titulo">
+                            </div>
+                        </div>
+
+                        <div class="col-lg-4" style="margin-left: 10px">
+                            <div class="form-group">
+                                <label for="">Responsable de ticket:</label>
+                                <input type="text" readonly="readonly" class="form-control" ng-model="formticket.usuarioasignado">
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="row">
+                        <div class="col-lg-10" style="margin-left: 10px">
+                            <div class="form-group">
+                                <label for="">Descripcion:</label>
+                                <textarea ng-model="formticket.descripcion " readonly="readonly" class="form-control" name="" id="" cols="8" rows="5"></textarea>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="row">
+                        <h2><i class="fas fa-file-text"></i> Solución propuesta al ticket</h2>
+                        <div class="col-lg-10" style="margin-left: 10px">
+                            <div class="form-group">
+                                <label for="">Solucion:</label>
+                                <textarea ng-model="formticket.solucion" readonly="readonly" class="form-control" name=""  cols="8" rows="5"></textarea>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <div class="row" style="margin-top: 10px" ng-hide="botonessolucion">
+                <div class="col-lg-12" style="margin-left: 10px" >
+                    <div class="form-group">
+                        <button class="btn btn-md btn-primary" ng-click="aceptarsolucion()"><i class="fas fa-thumbs-up"></i> Aceptar Solución</button>
+                        <button ng-click="mostrarformdenegado()" class="btn btn-md btn-danger"><i class="fas fa-thumbs-down"></i> Denegar Solución</button>
+                    </div>
+                </div>
+                <br><br>
+
+            </div>
+
+                <div class="row" ng-hide="denegarform">
+                    <div class="col-lg-6" style="margin-left: 10px">
+                        <div class="form-group">
+                            <label for="">Para denegar necesita una pequeña descripcion del por que:</label>
+                            <textarea name=""  cols="30" rows="5" class="form-control" ng-model="desc_denegado"></textarea>
+                        </div>
+                    </div>
+                </div>
+                <div class="row" ng-hide="denegarform">
+                    <div class="col-lg-6" style="margin-left: 10px">
+                        <div class="form-group">
+                           <button class="btn btn-primary" ng-click="denegarsolucion()" style="border:solid 1px black;"><i class="fas fa-save"></i> Guardar</button>
+                        </div>
+                    </div>
+                </div>
+
+
+            </form>
+        </div>
+
+        <div class="panel-footer" ng-hide="alertaticket">
+            <div class="alert alert-success">
+                <h2><i class="fas fa-info-circle"></i> Ticket actualizado con exito!</h2>
+            </div>
+        </div>
+
+    </div>
+</div>

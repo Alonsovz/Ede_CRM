@@ -1,0 +1,447 @@
+
+
+<div class="row" >
+    <div class="panel panel-default " >
+        <div class="panel-heading">
+            <div class="panel-title">
+                <h2 style="color:#087F18;font-weight: bold;"><i class="fas fa-users"></i> <i class="fas fa-file"></i>
+                     Generación de Reportes Globales y por Usuarios </h2>
+            </div>
+        </div>
+
+        <div class="panel-body" >
+            <div class="row">
+
+                <div class="clients-list">
+                    <ul class="nav nav-tabs">
+
+                        <li class="active"><a style="color:#040BBC" data-toggle="tab" href=".tab1"><i class="fas fa-users"></i> Por usuario</a></li>
+                        <li class=""><a style="color:#040BBC" data-toggle="tab" href=".tab4"><i class="fas fa-globe"></i> Global </a></li>
+
+                    </ul><br>
+                    <div class="tab-content">
+                        <div id="tab-1" class="tab-pane active tab1" style="padding-left: 20px">
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <div class="ibox-content" style="border: 1px solid #040BBC;
+                                    margin-right: 20px;">
+                                        <div class="col-lg-12" style="background-color: #026E81;
+                                        color: white;font-size:18px;font-weight: bold;
+                                        text-align: center;">
+                                           <i class="fas fa-user"></i> <i class="fas fa-file"></i> Por Usuario
+                                        </div>
+                                        <br><br>
+                                        <div class="row">
+                                            <div class="col-lg-12">
+                                                <div class="col-lg-4">
+                                                    <label for=""><i class="fas fa-users"></i> Usuario :</label>
+                                                    <select name="userSelect" id="userSelect"  class="form-control" ng-model="formRptUser.userC">
+                                                        <option value="">Seleccione un agente...</option>
+                                                        <option value="64">Elsy Escobar</option>
+                                                        <option value="71">Ricardo Chevez</option>
+                                                        <option value="74">Oscar Quan</option>
+                                                        <option value="12">Francisco Solano</option>
+                                                        <option value="54">Jesus Alvarenga</option>
+                                                        <option value="16">Margarita Vanegas</option>
+                                                        <option value="78">Leonel Bolaños</option>
+                                                        <option value="67">Angel Salinas</option>
+                                                        <option value="80">Oscar Lopez</option>
+                                                        <option value="7">Alicia Bolaños</option>
+                                                        <option value="27">Ever Mendez</option>
+                                                    </select>
+                                                </div>
+                                                <div class="col-lg-4">
+                                                        <label for=""><i class="fas fa-calendar"></i> Fecha Inicio:</label>
+                                                        <input  type="text" id="fechaInicioRptG" ng-model="formRptUser.fecha1U | amDateFormat:'YYYY-MM-DD'"
+                                                         class="form-control" >
+                                                       <br> <datetimepicker  datetimepicker-config="{'minView':'day'}"   
+                                                            style="margin-left: 3%;background-color: #E4E1E1;color: black;
+                                                            border:1px solid black;" data-ng-model="formRptUser.fecha1U" >
+                                                        </datetimepicker>
+                                                </div>
+                                                <div class="col-lg-4">
+                                                        <label for=""><i class="fas fa-calendar"></i> Fecha Fin:</label>
+                                                        <input  type="text" id="fechaFinRptG" ng-model="formRptUser.fecha2U | amDateFormat:'YYYY-MM-DD'" class="form-control">
+                                                        <br><datetimepicker   datetimepicker-config="{'minView':'day'}" 
+                                                            data-ng-model="formRptUser.fecha2U" style="margin-left: 3%;
+                                                            background-color: #E4E1E1;color: black;border:1px solid black;">
+                                                        </datetimepicker>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-12"><br><br>
+                                                <button ng-click="generarReporteUser()" style="background-color: #723147;"
+                                                class="btn btn-info btn-lg btn-block"><i class="fas fa-file"></i> Generar Reporte</button>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                    
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div id="tab-1" class="tab-pane tab4" style="padding-left: 20px">
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <div class="ibox-content" style="border: 1px solid #040BBC; margin-right: 20px;">
+                                    
+                                        <div class="col-lg-12" style="background-color: #026E81;
+                                        color: white;font-size:18px;font-weight: bold;
+                                        text-align: center;">
+                                            <i class="fas fa-globe"></i> <i class="fas fa-file"></i> Global 
+                                        </div>
+                                        <br><br>
+                                        <div class="row">
+                                            <div class="col-lg-12">
+                                                <div class="col-lg-6">
+                                                        <label for=""><i class="fas fa-calendar"></i> Fecha Inicio:</label>
+                                                        <input  type="text" id="fechaInicioRptGl" ng-model="formRptGlobal.fecha1 | amDateFormat:'DD/MM/YYYY'"
+                                                         class="form-control" >
+                                                       <br> <datetimepicker  datetimepicker-config="{'minView':'day'}"   
+                                                            style="margin-left: 15%;background-color: #E4E1E1;color: black;
+                                                            border:1px solid black;" data-ng-model="formRptGlobal.fecha1" >
+                                                        </datetimepicker>
+                                                </div>
+                                                <div class="col-lg-6">
+                                                        <label for=""><i class="fas fa-calendar"></i> Fecha Fin:</label>
+                                                        <input  type="text" id="fechaFinRptGl" ng-model="formRptGlobal.fecha2 | amDateFormat:'DD/MM/YYYY'" class="form-control">
+                                                        <br><datetimepicker   datetimepicker-config="{'minView':'day'}" 
+                                                            data-ng-model="formRptGlobal.fecha2" style="margin-left: 15%;
+                                                            background-color: #E4E1E1;color: black;border:1px solid black;">
+                                                        </datetimepicker>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-12"><br><br>
+                                                <button ng-click="generarReporteGlobal()" style="background-color: #56067B;"
+                                                class="btn btn-info btn-lg btn-block"><i class="fas fa-file"></i> Generar Reporte</button>
+                                            </div>
+                                        </div>
+                                            
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+                    </div>
+
+
+
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+</div>
+
+<div class="modal inmodal fade fadeInLeftBig" id="modalRptUsuario" tabindex="-1" role="dialog"  
+    data-backdrop="static" data-keyboard="false"  aria-hidden="true">
+    <div class="modal-dialog" style="width:95%;" role="document">
+        <div class="modal-content">
+                <div class="modal-header"   style="background-color:#4E0485; color:white;">
+                    <a style="font-size:21px;font-weight:bold;color:white;">
+                        <i class="fa fa-file"></i> <i class="fa fa-user"></i>  
+                            Reporte de actividades del usuario : 
+                        <a id="nomUserRpt" style="font-size:21px;font-weight:bold;color:yellow;"></a>
+                        <a style="font-size:21px;font-weight:bold;color:white;"> desde la fecha :  </a>
+                        <a id="fecha1RptG" style="font-size:21px;font-weight:bold;color:yellow;"></a>
+                        <a style="font-size:21px;font-weight:bold;color:white;"> hasta la fecha: </a>
+                        <a id="fecha2RptG" style="font-size:21px;font-weight:bold;color:yellow;"></a>
+                    </a> 
+                    
+                </div>
+
+                <div class="modal-body"  style=" max-height: calc(100vh - 212px);
+                overflow-y: auto;background-color: #D3D3D3;">
+                    <div style="background-color: ghostwhite;border:1px solid black"class="ibox-content">
+                            <div class="">
+                                <div style="background-color: #048ABF;text-align: center;" class="col-lg-12">
+                                    <h3 style="color: white;"> <i class="fa fa-bell"></i> Atenciones</h3>
+                                </div><br><br>
+                                <table style="font-size:11px " datatable="ng" dt-options="dtOptions" class="table table-bordered table-responsive table-hover" >
+                                    <thead>
+                                    <tr>
+                                    <tr>
+                                        <th class="text-center" style="background-color: #A7C8F2;">Fecha creacion</th>
+                                        <th class="text-center" style="background-color: #A7C8F2;">Tipo</th>
+                                        <th class="text-center" style="background-color: #A7C8F2;">Motivo</th>
+                                        <th class="text-center" style="background-color: #A7C8F2;">Cliente</th>
+                                        <th class="text-center" style="background-color: #A7C8F2;">Telefono</th>
+                                        <th class="text-center" style="background-color: #A7C8F2;">Descripcion</th>
+                                        <th class="text-center" style="background-color: #A7C8F2;">Atencion cerrada</th>
+                            
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr ng-repeat="atencion in atenciones" style="background-color: #D3D3D3; border-bottom: 1px solid black;">
+                                            
+                                            <td class="text-center" style="font-weight: bold;">{{atencion.fecha_creacion | amDateFormat:'DD/MM/YYYY H:mm'}}</td>
+                                            <td style="font-weight: bold;">{{atencion.tipoatencion}}</td>
+                                            <td style="font-weight: bold;">{{atencion.motivoatencion}}</td>
+                                            <td style="font-weight: bold;">{{atencion.cliente}}</td>
+                                            <td style="font-weight: bold;">{{atencion.telefono}}</td>
+                                            <td style="font-weight: bold;">
+                                                <div style="width:100%; max-height:100px; overflow:auto">
+                                                {{atencion.descripcion}}
+                                                </div>
+                                            </td>
+                                            <td class="text-center" style="font-weight: bold;">{{atencion.estado}}</td>
+                
+                                         </tr>
+                
+                
+                                    </tbody>
+                                    <tfoot>
+                
+                                    </tfoot>
+                                </table>
+                                <br><br>
+                                <div style="background-color: #027368;text-align: center;" class="col-lg-12">
+                                    <h3 style="color: white;"> <i class="fa fa-calendar"></i> Eventos </h3>
+                                </div><br><br>
+                                <table datatable="ng" dt-options="dtOptions" class="table table-hover table-bordered">
+                                    <thead>
+                                        <tr>
+                                            
+                                            <th class="text-center" style="background-color: #83D4CC;">Fecha creacion</th>
+                                            <th class="text-center" style="background-color: #83D4CC;">ID</th>
+                                            <th class="text-center" style="background-color: #83D4CC;">Cliente</th>
+                                            <th class="text-center" style="background-color: #83D4CC;">Fecha requerida (interna)</th>
+                                            <th class="text-center" style="background-color: #83D4CC;">Descripcion</th>
+                                            <th class="text-center" style="background-color: #83D4CC;">Fecha comprometida (con cliente/SH)</th>
+                                            <th class="text-center" style="background-color: #83D4CC;">Estado</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr ng-repeat="evento in eventosCl" style="background-color: #D3D3D3; border-bottom: 1px solid black;">
+                                            
+                                            <td style="font-weight: bold;" class="text-center">{{evento.fecha_creacion | amDateFormat:'DD/MM/YYYY'}}</td>
+                                            <td style="font-weight: bold;">{{evento.id}}</td>
+                                            <td style="font-weight: bold;">{{evento.cliente}}</td>
+                                            <td style="font-weight: bold;" class="text-center">{{evento.fecha_compromiso | amDateFormat:'DD/MM/YYYY'}}</td>
+                                            <td style="font-weight: bold;">
+                                                <div style="width:100%; max-height:100px; overflow:auto">
+                                                {{evento.descripcion}}
+                                                </div>
+                                            </td>
+                                            <td style="font-weight: bold;" class="text-center">{{evento.fecha_resolucion | amDateFormat:'DD/MM/YYYY'}}</td>
+                                            <td style="font-weight: bold;" class="text-center">{{evento.estado}}</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                                <br><br>
+                                <div style="background-color: #F25116;text-align: center;" class="col-lg-12">
+                                    <h3 style="color: white;"> <i class="fa fa-ticket-alt"></i> Tickets</h3>
+                                </div><br><br>
+                                <table datatable="ng" dt-options="dtOptions" class="table table-responsive table-bordered">
+                                    <thead>
+                                     <tr>
+                                         
+                                        <th class="text-center" style="background-color: #F9BCA6;"><i class="fas fa-calendar-alt"></i> Fecha creación</th>
+                                         <th class="text-center" style="background-color: #F9BCA6;">ID de evento</th>
+                                         <th class="text-center" style="background-color: #F9BCA6;">ID de ticket</th>
+                                         <th class="text-center" style="background-color: #F9BCA6;">Usuario asignado</th>
+                                         <th class="text-center" style="background-color: #F9BCA6;">Descripción</th>
+                                         <th class="text-center" style="background-color: #F9BCA6;"><i class="fas fa-calendar-alt"></i> Solicitud</th>
+                                         <th class="text-center" style="background-color: #F9BCA6;"><i class=""></i> Estado</th>
+                                         <th class="text-center" style="background-color: #F9BCA6;"><i class="fas fa-calendar-alt"></i> Fecha de solucion</th>
+                                     </tr>
+                                    </thead>
+                        
+                                     <tbody>
+                                         <tr ng-repeat="ticket in ticketsCl" style="background-color: #D3D3D3; ">
+                                            
+                                            <td style="font-weight: bold;" class="text-center">{{ticket.fechasolicitud | amDateFormat:'DD/MM/YYYY H:mm'}}</td>
+                                             <td style="font-weight: bold;" class="text-center">{{ticket.evento_id}}</td>
+                                             <td style="font-weight: bold;" class="text-center">{{ticket.id}}</td>
+                                             <td style="font-weight: bold;">{{ticket.nombreasignado}} {{ticket.apellidoasignado}}</td>
+                                             <td style="font-weight: bold;">
+                                                 <div style="width:100%; max-height:100px; overflow:auto">
+                                                     {{ticket.descripcion}}
+                                                 </div>
+                                                </td>
+                                             <td style="font-weight: bold;" class="text-center">{{ticket.fechasolicitud | amDateFormat:'DD/MM/YYYY H:mm'}}</td>
+                                             <td style="font-weight: bold;" class="text-center">{{ticket.estado}}</td>
+                                             
+                                             <td style="font-weight: bold;" class="text-center">{{ticket.fechasolucion | amDateFormat:'DD/MM/YYYY H:mm'}}</td>
+                                  
+                                         </tr>
+                        
+                                     </tbody>
+                                    </table>
+                            </div>
+                    </div>
+                </div>
+                <div class="modal-footer"   style="background-color:#CBCBCB">
+                    <button type="button" class="btn btn-default btn-sm cerrar"  data-dismiss="modal" 
+                    style="background-color:#BD1305; color:white;">
+                        <i class="fas fa-times"></i> Cancelar</button>
+                </div>
+        </div>
+    </div> 
+</div> 
+
+
+
+
+<div class="modal inmodal fade fadeInLeftBig" id="modalRptGlobal" tabindex="-1" role="dialog"  
+    data-backdrop="static" data-keyboard="false"  aria-hidden="true">
+    <div class="modal-dialog" style="width:95%;" role="document">
+        <div class="modal-content">
+                <div class="modal-header"   style="background-color:#31152B; color:white;">
+                    <a style="font-size:19px;font-weight:bold;color:white;">
+                        <i class="fa fa-file"></i> <i class="fa fa-user"></i>  
+                            Reporte de actividades de todos los usuarios a diferentes clientes
+                        <a style="font-size:19px;font-weight:bold;color:white;"> desde la fecha :  </a>
+                        <a id="fecha1RptGl" style="font-size:19px;font-weight:bold;color:yellow;"></a>
+                        <a style="font-size:19px;font-weight:bold;color:white;"> hasta la fecha: </a>
+                        <a id="fecha2RptGl" style="font-size:19px;font-weight:bold;color:yellow;"></a>
+                    </a> 
+                    
+                </div>
+
+                <div class="modal-body"  style=" max-height: calc(100vh - 212px);
+                overflow-y: auto;background-color: #D3D3D3;">
+                    <div style="background-color: ghostwhite;border:1px solid black"class="ibox-content">
+                            <div class="">
+                                <div style="background-color: #048ABF;text-align: center;" class="col-lg-12">
+                                    <h3 style="color: white;"> <i class="fa fa-bell"></i> Atenciones</h3>
+                                </div><br><br>
+                                <table style="font-size:11px " datatable="ng" dt-options="dtOptions" class="table table-bordered table-responsive table-hover" >
+                                    <thead>
+                                    <tr>
+                                    <tr>
+                                        <th class="text-center" style="background-color: #A7C8F2;">Fecha creacion</th>
+                                        <th class="text-center" style="background-color: #A7C8F2;">Tipo</th>
+                                        <th class="text-center" style="background-color: #A7C8F2;">Motivo</th>
+                                        <th class="text-center" style="background-color: #A7C8F2;">Cliente</th>
+                                        <th class="text-center" style="background-color: #A7C8F2;">Telefono</th>
+                                        <th class="text-center" style="background-color: #A7C8F2;">Descripcion</th>
+                                        <th class="text-center" style="background-color: #A7C8F2;">Atencion cerrada</th>
+                                        <th class="text-center" style="background-color: #A7C8F2;">Usuario</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr ng-repeat="atencion in atencionesG" style="background-color: #D3D3D3; border-bottom: 1px solid black;">
+                                            
+                                            <td class="text-center" style="font-weight: bold;">{{atencion.fecha_creacion | amDateFormat:'DD/MM/YYYY H:mm'}}</td>
+                                            <td style="font-weight: bold;">{{atencion.tipoatencion}}</td>
+                                            <td style="font-weight: bold;">{{atencion.motivoatencion}}</td>
+                                            <td style="font-weight: bold;">{{atencion.cliente}}</td>
+                                            <td style="font-weight: bold;">{{atencion.telefono}}</td>
+                                            <td style="font-weight: bold;">
+                                                <div style="width:100%; max-height:100px; overflow:auto">
+                                                {{atencion.descripcion}}
+                                                </div>
+                                            </td>
+                                            <td class="text-center" style="font-weight: bold;">{{atencion.estado}}</td>
+                                            <td class="text-center" style="font-weight: bold;">
+                                                <div  style="background-color:#171287;color:white;
+                                                font-weight:bold">{{atencion.usuarioCreacion}}</div></td>
+                                         </tr>
+                
+                
+                                    </tbody>
+                                    <tfoot>
+                
+                                    </tfoot>
+                                </table>
+                                <br><br>
+                                <div style="background-color: #027368;text-align: center;" class="col-lg-12">
+                                    <h3 style="color: white;"> <i class="fa fa-calendar"></i> Eventos </h3>
+                                </div><br><br>
+                                <table datatable="ng" dt-options="dtOptions" class="table table-hover table-bordered">
+                                    <thead>
+                                        <tr>
+                                            
+                                            <th class="text-center" style="background-color: #83D4CC;">Fecha creacion</th>
+                                            <th class="text-center" style="background-color: #83D4CC;">ID</th>
+                                            <th class="text-center" style="background-color: #83D4CC;">Cliente</th>
+                                            <th class="text-center" style="background-color: #83D4CC;">Fecha requerida (interna)</th>
+                                            <th class="text-center" style="background-color: #83D4CC;">Descripcion</th>
+                                            <th class="text-center" style="background-color: #83D4CC;">Fecha comprometida (con cliente/SH)</th>
+                                            <th class="text-center" style="background-color: #83D4CC;">Estado</th>
+                                            <th class="text-center" style="background-color: #83D4CC;">Usuario</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr ng-repeat="evento in eventosClG" style="background-color: #D3D3D3; border-bottom: 1px solid black;">
+                                            
+                                            <td style="font-weight: bold;" class="text-center">{{evento.fecha_creacion | amDateFormat:'DD/MM/YYYY'}}</td>
+                                            <td style="font-weight: bold;">{{evento.id}}</td>
+                                            <td style="font-weight: bold;">{{evento.cliente}}</td>
+                                            <td style="font-weight: bold;" class="text-center">{{evento.fecha_compromiso | amDateFormat:'DD/MM/YYYY'}}</td>
+                                            <td style="font-weight: bold;">
+                                                <div style="width:100%; max-height:100px; overflow:auto">
+                                                {{evento.descripcion}}
+                                                </div>
+                                            </td>
+                                            <td style="font-weight: bold;" class="text-center">{{evento.fecha_resolucion | amDateFormat:'DD/MM/YYYY'}}</td>
+                                            <td style="font-weight: bold;" class="text-center">{{evento.estado}}</td>
+                                            <td class="text-center">
+                                                <div  style="background-color:#026B65; color:white;
+                                                font-weight:bold"> {{evento.usuario_creacion}} </div>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                                <br><br>
+                                <div style="background-color: #F25116;text-align: center;" class="col-lg-12">
+                                    <h3 style="color: white;"> <i class="fa fa-ticket-alt"></i> Tickets</h3>
+                                </div><br><br>
+                                <table datatable="ng" dt-options="dtOptions" class="table table-responsive table-bordered">
+                                    <thead>
+                                     <tr>
+                                         
+                                        <th class="text-center" style="background-color: #F9BCA6;"><i class="fas fa-calendar-alt"></i> Fecha creación</th>
+                                         <th class="text-center" style="background-color: #F9BCA6;">ID de evento</th>
+                                         <th class="text-center" style="background-color: #F9BCA6;">ID de ticket</th>
+                                         <th class="text-center" style="background-color: #F9BCA6;">Usuario asignado</th>
+                                         <th class="text-center" style="background-color: #F9BCA6;">Descripción</th>
+                                         <th class="text-center" style="background-color: #F9BCA6;"><i class="fas fa-calendar-alt"></i> Solicitud</th>
+                                         <th class="text-center" style="background-color: #F9BCA6;"><i class=""></i> Estado</th>
+                                         <th class="text-center" style="background-color: #F9BCA6;"><i class="fas fa-calendar-alt"></i> Fecha de solucion</th>
+                                         <th class="text-center" style="background-color: #F9BCA6;">Usuario</th>
+                                    
+                                        </tr>
+                                    </thead>
+                        
+                                     <tbody>
+                                         <tr ng-repeat="ticket in ticketsClG" style="background-color: #D3D3D3; ">
+                                            
+                                            <td style="font-weight: bold;" class="text-center">{{ticket.fechasolicitud | amDateFormat:'DD/MM/YYYY H:mm'}}</td>
+                                             <td style="font-weight: bold;" class="text-center">{{ticket.evento_id}}</td>
+                                             <td style="font-weight: bold;" class="text-center">{{ticket.id}}</td>
+                                             <td style="font-weight: bold;">{{ticket.nombreasignado}} {{ticket.apellidoasignado}}</td>
+                                             <td style="font-weight: bold;">
+                                                 <div style="width:100%; max-height:100px; overflow:auto">
+                                                     {{ticket.descripcion}}
+                                                 </div>
+                                                </td>
+                                             <td style="font-weight: bold;" class="text-center">{{ticket.fechasolicitud | amDateFormat:'DD/MM/YYYY H:mm'}}</td>
+                                             <td style="font-weight: bold;" class="text-center">{{ticket.estado}}</td>
+                                             
+                                             <td style="font-weight: bold;" class="text-center">{{ticket.fechasolucion | amDateFormat:'DD/MM/YYYY H:mm'}}</td>
+                                             <td  style="font-weight: bold;" class="text-center">
+                                                <div  style="background-color:#171287; color:white;
+                                                font-weight:bold">
+                                                    {{ticket.usuario_creacion}}
+                                                </div>
+                                            </td>
+                                         </tr>
+                        
+                                     </tbody>
+                                    </table>
+                            </div>
+                    </div>
+                </div>
+                <div class="modal-footer"   style="background-color:#CBCBCB">
+                    <button type="button" class="btn btn-default btn-sm cerrar"  data-dismiss="modal" 
+                    style="background-color:#BD1305; color:white;">
+                        <i class="fas fa-times"></i> Cancelar</button>
+                </div>
+        </div>
+    </div> 
+</div> 

@@ -1,0 +1,2023 @@
+<div class="row" >
+    <div class="panel panel-default " >
+        <div class="panel-heading">
+            <div class="panel-title">
+                <h3><i class="fas fa-users"></i> Mis Clientes </h3>
+            </div>
+        </div>
+        <div class="panel-body" >
+            <div class="row">
+
+                <div class="clients-list">
+                    <ul class="nav nav-tabs">
+
+                        <li class="active"><a style="color:black" data-toggle="tab" href=".tab1"><i class="fas fa-user-md"></i> Clientes EDESAL</a></li>
+                        <li class=""><a style="color:black" data-toggle="tab" href=".tab4"><i class="fas fa-user-md"></i> Cliente Adaptandose < 120 dias</a></li>
+                        <li class=""><a ng-click="tab2click()" style="color:black" data-toggle="tab" href=".tab2"><i class="fas fa-user-circle"></i> Clientes Prospectos / Stakeholder</a></li>
+                        <li class=""><a ng-click="tab2click()" style="color:black" data-toggle="tab" href=".tab3"><i class="fas fa-user-circle"></i> Clientes/SH Compartidos</a></li>
+
+                    </ul>
+                    <div class="tab-content">
+                        <div id="tab-1" class="tab-pane active tab1" style="padding-left: 20px">
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <br><br>
+                                    <table datatable="ng" dt-options="dtOptions" class="table table-bordered table-responsive table-hover">
+                                        <thead>
+                                        <tr>
+                                            <th style="background-color: black; color:white">Codigo</th>
+                                            <th style="background-color: black; color:white">Cliente</th>
+                                            <th style="background-color: black; color:white">DUI</th>
+                                            <th style="background-color: black; color:white">NIT</th>
+                                            <th style="background-color: black; color:white">Telefono</th>
+                                            <th style="background-color: black; color:white">Direccion</th>
+                                            <th style="background-color: black; color:white">Accion</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        <tr ng-repeat="cliente in clientes">
+                                            <td>{{cliente.codigo}}</td>
+                                            <td>{{cliente.nombrecliente}} {{cliente.apellidocliente}}</td>
+                                            <td>{{cliente.dui}} </td>
+                                            <td>{{cliente.nit}} </td>
+                                            <td>{{cliente.telefono}} </td>
+                                            <td>{{cliente.direccion}} </td>
+                                            <td class="text-center">
+                                                <button ng-click="detallecliente()" class="btn btn-xs btn-info" ><i class="fas fa-eye"></i></button>
+                                            </td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+
+                                <div class="col-lg-12" ng-hide="footercliente">
+                                    <div class="row m-b-lg m-t-lg">
+                                        <div class="col-md-6">
+
+                                            <div class="profile-image">
+                                                <img src="img/profile.png" class="img-circle circle-border m-b-md" alt="profile">
+                                            </div>
+                                            <div class="profile-info">
+                                                <div class="">
+                                                    <div>
+                                                        <h2 class="no-margins">
+                                                            {{clienteDetalle.nombrecliente}} {{clienteDetalle.apellidocliente}}
+                                                        </h2>
+                                                        <h4>{{clienteDetalle.codigo}}</h4>
+                                                        <small>
+                                                            {{clienteDetalle.direccion}}
+                                                        </small>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="clients-list">
+                                            <ul class="nav nav-tabs">
+
+                                                <li class="active"><a data-toggle="tab" href=".tab21"><i class="fa fa-user"></i> Contactos</a></li>
+                                                <li class=""><a data-toggle="tab" href=".tab22"><i class="fa fa-briefcase"></i> Suministros</a></li>
+                                            </ul>
+                                            <div class="tab-content">
+                                                <div id="tab-1" class="tab-pane active tab21">
+                                                   <div class="col-lg-12">
+                                                       <div class="ibox">
+                                                           <div class="ibox-heading"></div>
+                                                           <div class="ibox-content">
+                                                               <table class="table table-striped table-hover">
+                                                                   <tbody>
+                                                                   <tr ng-repeat="contacto in contactos">
+                                                                       <td class="client-avatar"><i class="fas fa-user-circle"></i> </td>
+                                                                       <td><a data-toggle="tab" href="." class="client-link">{{contacto.nombre_contacto}}</a></td>
+                                                                       <td> {{contacto.cargo_contacto}}</td>
+                                                                       <td class="contact-type"><i class="fa fa-envelope"> </i></td>
+                                                                       <td> {{contacto.correo_contacto}}</td>
+                                                                       <td> {{contacto.celular_1}}</td>
+                                                                       <td> {{contacto.telefono_1}}</td>
+                                                                   </tr>
+
+                                                                   </tbody>
+                                                               </table>
+                                                           </div>
+                                                       </div>
+                                                   </div>
+                                                </div>
+                                                <div id="tab-2" class="tab-pane tab22">
+                                                    <div class="col-lg-12">
+                                                        <div class="ibox">
+                                                            <div class="ibox-heading">
+
+                                                            </div>
+                                                            <div class="ibox-content">
+                                                                <table class="table table-striped table-hover">
+                                                                    <thead>
+                                                                    <tr>
+                                                                        <th class="text-center">N° Suministro</th>
+                                                                        <th class="text-center">Direccion</th>
+                                                                        <th class="text-center">Voltaje</th>
+                                                                        <th class="text-center">Capacidad</th>
+                                                                        <th class="text-center">Cod-Tarifa</th>
+                                                                        <th class="text-center">Tipo tension</th>
+                                                                        <th class="text-center">Estado</th>
+                                                                    </tr>
+                                                                    </thead>
+                                                                    <tbody>
+                                                                    <tr ng-repeat="suministro in suministros">
+                                                                        <td class="text-center"><a data-toggle="tab" href="." class="client-link">{{suministro.num_suministro}}</a></td>
+                                                                        <td><i class="fa fa-flag"></i> {{suministro.anexo_direccion}}</td>
+                                                                        <td class="text-center"> {{suministro.voltaje_energia}}</td>
+                                                                        <td class="text-center">{{suministro.capacidad_maxima}}</td>
+                                                                        <td class="text-center">{{suministro.CODIGO_TARIFA}}</td>
+                                                                        <td class="text-center">{{suministro.tipo_tension}}</td>
+                                                                        <td  class=" text-center"><span class="label label-default">{{suministro.estado}}</span></td>
+                                                                    </tr>
+
+                                                                    </tbody>
+                                                                </table>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                        <div id="tab-4" class="tab-pane tab4"></div>
+                        <div  id="tab-2" class="tab-pane tab2" style=" padding-top: 10px">
+                            <div class="col-lg-12">
+                                <div class="ibox float-e-margins">
+                                    <div class="ibox-title" style="background-image: url('img/header4.png'); background-size: cover">
+
+                                        <div class="ibox-tools">
+                                            <button ng-click="verclientespotenciales()" class="btn-white btn btn-md" style="border: solid 1px black"><i class="fas fa-table"></i> Ver Listado</button>
+                                            <button  class="btn-white btn btn-md" ng-click="btn_nuevocliente()" style="border: solid 1px black"><i class="fas fa-plus"></i> Nuevo cliente</button>
+                                        </div>
+                                    </div>
+                                    <div class="ibox-content" ng-hide="formulariopotencial">
+                                        <form action="" class="form-horizontal">
+                                           <div class="row">
+                                               <h2><b>Información General</b></h2>
+                                               <div class="col-lg-6">
+                                                   <div class="form-group">
+                                                       <label for="">Empresa:</label>
+                                                       <input type="text" class="form-control" ng-model="clientepot.empresa">
+                                                   </div>
+                                               </div>
+
+                                               <div class="col-lg-4" style="margin-left: 10px">
+                                                   <div class="form-group">
+                                                       <label for="">Rubro:</label>
+                                                       <input type="text" class="form-control" ng-model="clientepot.rubro">
+                                                   </div>
+                                               </div>
+                                           </div>
+
+                                            <div class="row">
+                                                <div class="col-lg-6">
+                                                    <div class="form-group">
+                                                        <label for="">Direccion:</label>
+                                                        <input type="text" class="form-control" ng-model="clientepot.direccion">
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-lg-4" style="margin-left: 10px">
+                                                    <div class="form-group">
+                                                        <label for="">PBX:</label>
+                                                        <input type="text" class="form-control" ng-model="clientepot.pbx">
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="row">
+                                                <div class="col-lg-4" >
+                                                    <div class="form-group">
+                                                        <label for="">Categoria de cliente:</label>
+                                                        <select name="" class="form-control" ng-model="clientepot.categoria" >
+                                                            <option value=""></option>
+                                                            <option value="1">Cliente Prospecto</option>
+                                                            <option value="2">Cliente Stakeholder</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="row">
+                                                <button ng-hide="botontecnica" ng-click="vertecnica()" style="border:solid 1px black" class="btn btn-warning col-lg-12"><i class="fas fa-file"></i> Ingresar información tecnica</button>
+                                            </div>
+
+                                                <div class="row alert alert-success " ng-hide="alertas">
+                                                    <h3><b><i class="fas fa-info-circle"></i> Cliente prospecto creado con exito!!</b></h3>
+                                                </div>
+
+
+                                            <br><br>
+                                            <div ng-hide="informaciontecnica" class="row">
+                                                <h2><b>Datos tecnicos de energía</b></h2>
+                                                <div class="col-lg-4">
+                                                    <div class="form-group">
+                                                        <label for="">Tension:</label>
+                                                        <select name="" class="form-control" ng-model="clientepot.tension" id="">
+                                                            <option value=""></option>
+                                                            <option value="MT">MT</option>
+                                                            <option value="BT">BT</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-lg-3" style="margin-left: 10px">
+                                                    <div class="form-group">
+                                                        <label for="">Fases:</label>
+                                                        <select class="form-control" name="" id="" ng-model="clientepot.fases">
+                                                            <option value=""></option>
+                                                            <option value="1">1</option>
+                                                            <option value="2">2</option>
+                                                            <option value="3">3</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-lg-3" style="margin-left: 10px">
+                                                    <div class="form-group">
+                                                        <label for="">Hilos:</label>
+                                                        <select  class="form-control" name="" id="" ng-model="clientepot.hilos">
+                                                            <option value=""></option>
+                                                            <option value="2">2</option>
+                                                            <option value="3">3</option>
+                                                            <option value="4">4</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div ng-hide="informaciontecnica" class="row">
+                                                <div class="col-lg-4">
+                                                    <div class="form-group">
+                                                        <label for="">Uso del servicio:</label>
+                                                        <select name="" class="form-control" ng-model="clientepot.servicio">
+                                                            <option value=""></option>
+                                                            <option value="Residencial">Residencial</option>
+                                                            <option value="Residencial">Comercial</option>
+                                                            <option value="Residencial">Industrial</option>
+                                                            <option value="Residencial">Provisional</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-lg-3" style="margin-left: 10px">
+                                                    <div class="form-group">
+                                                        <label for="">Tarifa:</label>
+                                                        <select name=""  class="form-control" ng-model="clientepot.tarifa">
+                                                            <option value=""></option>
+                                                            <option value="1R">1R</option>
+                                                            <option value="1AP">1AP</option>
+                                                            <option value="1G">1G</option>
+                                                            <option value="MBP">MBP</option>
+                                                            <option value="MMP">MMP</option>
+                                                            <option value="MBH">MBH</option>
+                                                            <option value="MMH">MMH</option>
+                                                            <option value="GMB">GMB</option>
+                                                            <option value="GMH">GMH</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-lg-3" style="margin-left: 10px">
+                                                    <div class="form-group">
+                                                        <label for="">Potencia:</label>
+                                                        <input type="number" class="form-control" ng-model="clientepot.potencia">
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <br><br>
+
+                                            <div ng-hide="informaciontecnica" class="row">
+                                                <h2><b>Información de la Sub estación</b></h2>
+                                                <div class="col-lg-5">
+                                                    <div class="form-group">
+                                                        <label for="">Inmueble Propiedad de:</label>
+                                                        <input type="text" class="form-control" ng-model="clientepot.subpropiedad">
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-lg-5" style="margin-left: 10px">
+                                                    <div class="form-group">
+                                                        <label for="">Ubicación:</label>
+                                                        <input type="text" class="form-control" ng-model="clientepot.ubicacion">
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div ng-hide="informaciontecnica" class="row">
+
+                                                <div class="col-lg-4">
+                                                    <div class="form-group">
+                                                        <label for="">KVA Instalados:</label>
+                                                        <input type="number" class="form-control" ng-model="clientepot.kvainstalados">
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-lg-4" style="margin-left: 10px">
+                                                    <div class="form-group">
+                                                        <label for="">Transformadores instalados:</label>
+                                                        <input type="number" class="form-control" ng-model="clientepot.transformadores">
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div ng-hide="informaciontecnica" class="row">
+
+                                                <div class="col-lg-4">
+                                                    <div class="form-group">
+                                                        <label for="">KVA requeridos:</label>
+                                                        <input type="text" class="form-control" ng-model="clientepot.kvareque">
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-lg-4" style="margin-left: 10px">
+                                                    <div class="form-group">
+                                                        <label for="">Transformadores requeridos:</label>
+                                                        <input type="number" class="form-control" ng-model="clientepot.transformadoresreq">
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div ng-hide="informaciontecnica" class="row">
+
+
+
+                                                <div class="col-lg-3" >
+                                                    <div class="form-group">
+                                                        <label for="">Conexion:</label>
+                                                        <select name="" id="" class="form-control" ng-model="clientepot.conexion">
+                                                            <option value=""></option>
+                                                            <option value="Estrella">Estrella</option>
+                                                            <option value="Delta">Delta</option>
+                                                            <option value="Delta Abierta">Delta Abierta</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-lg-3" style="margin-left: 10px">
+                                                    <div class="form-group">
+                                                        <label for="">Montaje:</label>
+                                                        <select name="" id="" class="form-control" ng-model="clientepot.montaje">
+                                                            <option value=""></option>
+                                                            <option value="Poste">Poste</option>
+                                                            <option value="Plataforma">Plataforma</option>
+                                                            <option value="Estructura H">Estructura H</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div ng-hide="informaciontecnica" class="row">
+
+                                                <div class="col-lg-5">
+                                                    <div class="form-group">
+                                                        <label for="">Tipo de transformador:</label>
+                                                        <select  ng-model="clientepot.transformador" class="form-control">
+                                                            <option value=""></option>
+                                                            <option value="Trifasico">Trifasico</option>
+                                                            <option value="Monofasico">Monofasico</option>
+                                                            <option value="Monofasico Padmounted">Monofasico Padmounted</option>
+                                                            <option value="Trifasico Padmounted">Trifasico Padmounted</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-lg-5" style="margin-left: 10px">
+                                                    <div class="form-group">
+                                                        <label for="">Capacidad de fusibles de protección:</label>
+                                                        <input type="number" class="form-control" ng-model="clientepot.fusiblesproteccion">
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="row" ng-hide="informaciontecnica">
+                                                <div class="col-lg-3">
+                                                    <div class="form-group">
+                                                        <label for="">Voltaje de alta:</label>
+                                                        <input type="number" class="form-control" ng-model="clientepot.voltajealta">
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-lg-3" style="margin-left: 10px">
+                                                    <div class="form-group">
+                                                        <label for="">Voltaje de baja:</label>
+                                                        <input type="number" class="form-control" ng-model="clientepot.voltajebaja">
+                                                    </div>
+                                                </div>
+                                            </div>
+
+
+                                            <br><br>
+                                            <div ng-hide="informaciontecnica" class="row">
+                                                <h2><b>Información Adicional</b></h2>
+                                                <div class="col-lg-3">
+                                                    <div class="form-group">
+                                                        <label for="">Numero de turnos de producción:</label>
+                                                        <input type="text" class="form-control" ng-model="clientepot.turnosproduccion">
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-lg-4" style="margin-left: 10px">
+                                                    <div class="form-group">
+                                                        <label for="">Conectados al # de corte:</label>
+                                                        <input type="text" class="form-control" ng-model="clientepot.numerocortes">
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div ng-hide="informaciontecnica" class="row">
+                                                <div class="col-lg-3">
+                                                    <div class="form-group">
+                                                        <label for="">Porcentaje de costo de la energia (%):</label>
+                                                        <input type="number" class="form-control" ng-model="clientepot.costoporcentajeenergia">
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-3" style="margin-left: 10px">
+                                                    <div class="form-group">
+                                                        <label for="">Facturacion mensual (aproximada):</label>
+                                                        <input type="" class="form-control" ng-model="clientepot.facturacionmensual">
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-3" style="margin-left: 10px">
+                                                    <div class="form-group">
+                                                        <label for="">Margen de rentabilidad (%):</label>
+                                                        <input type="text" class="form-control" ng-model="clientepot.margenrentabilidad">
+                                                    </div>
+                                                </div>
+
+                                            </div>
+
+                                            <div ng-hide="informaciontecnica" class="row">
+                                                <div class="col-lg-3" >
+                                                    <div class="form-group">
+                                                        <label for="">Horas de producción:</label>
+                                                        <input type="number" class="form-control" ng-model="clientepot.horasproduccion">
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-4" style="margin-left: 10px">
+                                                    <div class="form-group">
+                                                        <label for="">Fecha de visita:</label>
+                                                        <input type="date" class="form-control" ng-model="clientepot.fechavisita">
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div ng-hide="informaciontecnica" class="row">
+
+                                                <div class="col-lg-7">
+                                                    <div class="form-group">
+                                                        <label for="">Promesa ofrecida por EDESAL:</label>
+                                                        <textarea cols="7" rows="5" class="form-control" ng-model="clientepot.compromisos"></textarea>
+                                                    </div>
+
+                                                </div>
+                                            </div>
+
+                                            <div class="row alert alert-info" ng-hide="informaciontecnica">
+                                                <p><i class="fas fa-info-circle"></i>
+                                                    Este cliente puede ser compartido con otro agente de ventas si asi lo desea, seleccionando del siguiente campo su respectivo nombre
+                                                </p><br>
+                                                <div class="col-lg-3">
+                                                    <div class="form-group">
+                                                        <select name=""  class="form-control" ng-model="clientepot.compartirusuario">
+                                                            <option value="">Seleccione un agente...</option>
+                                                            <option value="Elsy Escobar">Elsy Escobar</option>
+                                                            <option value="Ricardo Chevez">Ricardo Chevez</option>
+                                                            <option value="Oscar Quan">Oscar Quan</option>
+                                                            <option value="Francisco Solano">Francisco Solano</option>
+                                                            <option value="Jesus Alvarenga">Jesus Alvarenga</option>
+                                                            <option value="Margarita Vanegas">Margarita Vanegas</option>
+                                                            <option value="Leonel Bolaños">Leonel Bolaños</option>
+                                                            <option value="Angel Salinas">Angel Salinas</option>
+                                                            <option value="Oscar Lopez">Oscar Lopez</option>
+                                                            <option value="Alicia Bolaños">Alicia Bolaños</option>
+                                                            <option value="Ever Mendes">Ever Mendes</option>
+                                                        </select>
+                                                        <button ng-click="asignarusuario()" class="btn btn-white" style="border:solid 1px black; margin-top: 2px"><i class="fas fa-handshake"></i> Seleccionar</button>
+                                                    </div>
+                                                </div>
+                                                <table class="table table-bordered">
+                                                    <thead>
+                                                    <tr>
+                                                        <th style="background: black; color:white" >Usuario seleccionado</th>
+                                                    </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                    <tr ng-repeat="usuario in usuarioscompartidos">
+                                                        <td style="border:solid 1px black">{{usuario}}</td>
+                                                    </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+
+
+                                        </form>
+
+                                    </div>
+                                    <div class="ibox-footer" ng-hide="formulariopotencial" style="background-color: lightgrey; border: black solid 1px;">
+                                        <div class="row">
+                                            <div class="col-lg-7">
+                                                <div class="form-group">
+                                                    <button ng-click="guardarclientepotencial()" class="btn btn-primary btn-md" style="border: black solid 1px;"><i class="fas fa-save"></i> Guardar</button>
+                                                    <button class="btn btn-white btn-md" style="border: black solid 1px;"><i class="fas fa-times-circle"></i> Cancelar</button>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                    <div class="ibox-content" ng-hide="listadopotenciales">
+                                            <table class="table table-striped table-bordered table-hover" datatable="ng" dt-options="dtOptions">
+                                                <thead>
+                                                <tr>
+                                                    <th style="border-right: solid 1px black; background-color: #027368; color: white;" class="text-center">ID</th>
+                                                    <th style="border-right: solid 1px black; background-color: #027368; color: white;" class="text-center">Categoria</th>
+                                                    <th style="border-right: solid 1px black; background-color: #027368; color: white;" class="text-center">Empresa</th>
+                                                    <th style="border-right: solid 1px black; background-color: #027368; color: white;" class="text-center">Dirección</th>
+                                                    <th style="border-right: solid 1px black; background-color: #027368; color: white;" class="text-center">Tarifa</th>
+                                                    <th style="border-right: solid 1px black; background-color: #027368; color: white;" class="text-center">Potencia</th>
+                                                    <th style="border-right: solid 1px black; background-color: #027368; color: white;" class="text-center">Tension</th>
+                                                    <th style="background-color: #027368; color: white;" class="text-center"></th>
+                                                    <th style="background-color: #027368; color: white;" class="text-center"></th>
+                                                    <th style="background-color: #027368; color: white;" class="text-center"></th>
+
+                                                </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr ng-repeat="p in potencial" >
+                                                        <td  class="text-center">{{p.id}}</td>
+                                                        <td  class="text-center">{{p.categoria}}</td>
+                                                        <td  class="">{{p.empresa}}</td>
+                                                        <td  class="">{{p.direccion}}</td>
+                                                        <td  class="text-center">{{p.tarifa}}</td>
+                                                        <td  class="text-center">{{p.potencia}}</td>
+                                                        <td  class="text-center">{{p.tension_servicio}}</td>
+                                                        <td  class="text-center"><button ng-click="formularionuevaatencion(p)" class="btn btn-xs btn-info" style="border:solid 1px black;color:black" type="button"><i class="fas fa-file"></i> Nueva atención</button></td>
+                                                        <td  class="text-center"><button ng-click="verdetallespotencial(p)" class="btn btn-xs btn-warning" style="border:solid 1px black;color:black" type="button"><i class="fas fa-eye"></i> Detalles</button></td>
+                                                        <td  class="text-center"><button ng-click="verdetalleshistorial(p)" class="btn btn-xs btn-danger" style="border:solid 1px black;color:white;background-color: #056319;" type="button"><i class="fas fa-eye"></i> Historial</button></td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                    </div>
+                                    
+                                         <div style="background-color: ghostwhite;" class="ibox-content" ng-hide="detallespotenciales">
+                                        <form action="" class="form-horizontal">
+                                            <h1><i class="fas fa-pen"></i> Detalles para actualizar</h1>
+                                            <div class="row alert alert-info" style="margin-top: 25px">
+                                                <div class="col-lg-2">
+                                                    <div class="form-group">
+                                                        <label for="">Porcentaje de costo de la energia (%):</label>
+                                                        <input type="number" value="{{up_cliente.porcentaje_costo_energia}}" class="form-control" ng-model="up_cliente.porcentaje_costo_energia">
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-lg-2" style="margin-left: 10px">
+                                                    <div class="form-group">
+                                                        <label for="">Facturacion mensual (aproximada):</label>
+                                                        <input type="" value="{{up_cliente.facturacion_mensual}}" class="form-control" ng-model="up_cliente.facturacion_mensual">
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-lg-2" style="margin-left: 10px">
+                                                    <div class="form-group">
+                                                        <label for="">Margen de rentabilidad (%):</label>
+                                                        <input type="text" value="{{up_cliente.margen_rentabilidad}}" class="form-control" ng-model="up_cliente.margen_rentabilidad">
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-lg-2" style="margin-left: 10px">
+                                                    <div class="form-group">
+                                                        <label for="">Horas de producción (mensual):</label>
+                                                        <input type="number" value="{{up_cliente.horas_produccion}}" class="form-control" ng-model="up_cliente.horas_produccion">
+                                                    </div>
+                                                </div>
+                                                <br>
+
+
+                                            </div>
+
+                                            <div class="row alert-info alert">
+                                                <div class="col-lg-2" style="margin-left: 10px">
+                                                    <div class="form-group">
+                                                        <label for="">Costo Total:</label>
+                                                        <input readonly="readonly" type="text" value="{{up_cliente.facturacion_mensual/(up_cliente.porcentaje_costo_energia/100)}}" class="form-control" >
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-4" style="margin-left: 10px">
+                                                    <div class="form-group">
+                                                        <label for="">Perdida de ganancia por interrupción (Por Hora):</label>
+                                                        <input readonly="readonly" type="text" value="{{((up_cliente.facturacion_mensual/(up_cliente.porcentaje_costo_energia/100))*(up_cliente.margen_rentabilidad/100)/up_cliente.horas_produccion) | number : fractionSize}}" class="form-control" >
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="row alert alert-warning">
+                                                <h2>El cliente esta compartido con los siguientes usuarios</h2>
+                                                <table class="table table-responsive table-hover table-stripped">
+                                                    <thead>
+                                                        <tr>
+                                                            <th>Usuario</th>
+                                                            <th>Accion</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <tr ng-repeat="usuario in usuarioscliente">
+                                                            <td>{{usuario.nombre}} {{usuario.apellido}}</td>
+                                                            <td>
+                                                                <button ng-click="dejarCompartirCliente(usuario)" class="btn btn-xs btn-outline btn-danger" style="border: solid 1px black">
+                                                                    <i class="fas fa-download"></i>  Dejar de compartir
+                                                                </button>
+                                                            </td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                                <hr>
+                                                <div class="col-lg-12">
+                                                    <p><i class="fas fa-info-circle"></i>
+                                                        Este cliente puede ser compartido con otro agente de ventas si asi lo desea, seleccionando del siguiente campo su respectivo nombre
+                                                    </p><br>
+                                                    <div class="col-lg-3">
+                                                        <div class="form-group">
+                                                            <select name=""  class="form-control" ng-model="clientepot.compartirusuario">
+                                                                <option value="">Seleccione un agente...</option>
+                                                                <option value="Elsy Escobar">Elsy Escobar</option>
+                                                                <option value="Ricardo Chevez">Ricardo Chevez</option>
+                                                                <option value="Oscar Quan">Oscar Quan</option>
+                                                                <option value="Francisco Solano">Francisco Solano</option>
+                                                                <option value="Jesus Alvarenga">Jesus Alvarenga</option>
+                                                                <option value="Margarita Vanegas">Margarita Vanegas</option>
+                                                                <option value="Leonel Bolaños">Leonel Bolaños</option>
+                                                            <option value="Angel Salinas">Angel Salinas</option>
+                                                            <option value="Oscar Lopez">Oscar Lopez</option>
+                                                            <option value="Alicia Bolaños">Alicia Bolaños</option>
+                                                            <option value="Ever Mendes">Ever Mendes</option>
+                                                            </select>
+                                                            <button ng-click="asignarusuario()" class="btn btn-white" style="border:solid 1px black; margin-top: 2px"><i class="fas fa-handshake"></i> Seleccionar</button>
+                                                        </div>
+                                                    </div>
+                                                    <table class="table table-bordered">
+                                                        <thead>
+                                                        <tr>
+                                                            <th style="background: black; color:white" >Usuario seleccionado</th>
+                                                        </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                        <tr ng-repeat="usuario in usuarioscompartidos">
+                                                            <td style="border:solid 1px black">{{usuario}}</td>
+                                                        </tr>
+                                                        </tbody>
+
+                                                    </table>
+                                                    <button class="btn btn-primary" ng-click="guardarusuariosnuevos()"><i class="fas fa-save"></i> Guardar usuarios</button>
+                                                </div>
+                                            </div>
+                                            <div class="row" style="margin-top: 25px">
+                                                <h3><b>Información General</b></h3>
+                                                <div class="col-lg-6">
+                                                    <div class="form-group">
+                                                        <label for="">Empresa:</label>
+                                                        <input type="text" class="form-control" ng-model="up_cliente.empresa">
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-lg-4" style="margin-left: 10px">
+                                                    <div class="form-group">
+                                                        <label for="">Rubro:</label>
+                                                        <input type="text" class="form-control" ng-model="up_cliente.rubro">
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="row">
+                                                <div class="col-lg-6">
+                                                    <div class="form-group">
+                                                        <label for="">Direccion:</label>
+                                                        <input type="text" class="form-control" ng-model="up_cliente.direccion">
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-lg-4" style="margin-left: 10px">
+                                                    <div class="form-group">
+                                                        <label for="">PBX:</label>
+                                                        <input type="text" class="form-control" ng-model="up_cliente.pbx">
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <br><br>
+                                            <div class="row">
+                                                <h3><b>Datos tecnicos de energía</b></h3>
+                                                <div class="col-lg-4">
+                                                    <div class="form-group">
+                                                        <label for="">Tension:</label>
+                                                        <select name="" class="form-control" ng-model="up_cliente.tension_servicio" id="">
+                                                            <option value="{{up_cliente.tension_servicio}}">{{up_cliente.tension_servicio}}</option>
+                                                            <option value="MT">MT</option>
+                                                            <option value="BT">BT</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-lg-3" style="margin-left: 10px">
+                                                    <div class="form-group">
+                                                        <label for="">Fases:</label>
+                                                        <select class="form-control" name="" id="" ng-model="up_cliente.fases">
+                                                            <option value="{{up_cliente.fases}}">{{up_cliente.fases}}</option>
+                                                            <option value="1">1</option>
+                                                            <option value="2">2</option>
+                                                            <option value="3">3</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-lg-3" style="margin-left: 10px">
+                                                    <div class="form-group">
+                                                        <label for="">Hilos:</label>
+                                                        <select  class="form-control" name="" id="" ng-model="up_cliente.hilos">
+                                                            <option value="{{up_cliente.uso_servicio}}">{{up_cliente.hilos}}</option>
+                                                            <option value="2">2</option>
+                                                            <option value="3">3</option>
+                                                            <option value="4">4</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="row">
+                                                <div class="col-lg-4">
+                                                    <div class="form-group">
+                                                        <label for="">Uso del servicio:</label>
+                                                        <select name="" class="form-control" ng-model="up_cliente.uso_servicio">
+                                                            <option value="{{up_cliente.uso_servicio}}">{{up_cliente.uso_servicio}}</option>
+                                                            <option value="Residencial">Residencial</option>
+                                                            <option value="Residencial">Comercial</option>
+                                                            <option value="Residencial">Industrial</option>
+                                                            <option value="Residencial">Provisional</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-lg-3" style="margin-left: 10px">
+                                                    <div class="form-group">
+                                                        <label for="">Tarifa:</label>
+                                                        <select name=""  class="form-control" ng-model="up_cliente.tarifa">
+                                                            <option value="{{up_cliente.tarifa}}">{{up_cliente.tarifa}}</option>
+                                                            <option value="1R">1R</option>
+                                                            <option value="1AP">1AP</option>
+                                                            <option value="1G">1G</option>
+                                                            <option value="MBP">MBP</option>
+                                                            <option value="MMP">MMP</option>
+                                                            <option value="MBH">MBH</option>
+                                                            <option value="MMH">MMH</option>
+                                                            <option value="GMB">GMB</option>
+                                                            <option value="GMH">GMH</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-lg-3" style="margin-left: 10px">
+                                                    <div class="form-group">
+                                                        <label for="">Potencia:</label>
+                                                        <input type="number" value="{{up_cliente.potencia}}" class="form-control" ng-model="up_cliente.potencia">
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="row">
+
+                                                <div class="col-lg-5">
+                                                    <div class="form-group">
+                                                        <label for="">Inmueble Propiedad de:</label>
+                                                        <input type="text" value="{{up_cliente.sub_propiedad}}" class="form-control" ng-model="up_cliente.sub_propiedad">
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-lg-5" style="margin-left: 10px">
+                                                    <div class="form-group">
+                                                        <label for="">Ubicación:</label>
+                                                        <input type="text" value="{{up_cliente.sub_ubicacion}}" class="form-control" ng-model="up_cliente.sub_ubicacion">
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="row">
+
+                                                <div class="col-lg-4">
+                                                    <div class="form-group">
+                                                        <label for="">KVA Instalados:</label>
+                                                        <input type="number" value="{{up_cliente.sub_kva_instalados}}" class="form-control" ng-model="up_clientesub_.kva_instalados">
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-lg-4" style="margin-left: 10px">
+                                                    <div class="form-group">
+                                                        <label for="">Transformadores instalados:</label>
+                                                        <input type="number" value="{{up_cliente.sub_transformadores}}" class="form-control" ng-model="up_cliente.sub_transformadores">
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="row">
+
+                                                <div class="col-lg-4">
+                                                    <div class="form-group">
+                                                        <label for="">KVA requeridos:</label>
+                                                        <input value="{{up_cliente.sub_kva_requeridos}}" type="text" class="form-control" ng-model="up_cliente.sub_kva_requeridos">
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-lg-4" style="margin-left: 10px">
+                                                    <div class="form-group">
+                                                        <label for="">Transformadores requeridos:</label>
+                                                        <input type="number" value="{{up_cliente.sub_transformadores_req}}" class="form-control" ng-model="up_cliente.sub_transformadores_req">
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="row">
+
+
+
+                                                <div class="col-lg-3" >
+                                                    <div class="form-group">
+                                                        <label for="">Conexion:</label>
+                                                        <select name="" id="" class="form-control" ng-model="up_cliente.sub_conexion">
+                                                            <option value="{{up_cliente.sub_conexion}}">{{up_cliente.sub_conexion}}</option>
+                                                            <option value="Estrella">Estrella</option>
+                                                            <option value="Delta">Delta</option>
+                                                            <option value="Delta Abierta">Delta Abierta</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-lg-3" style="margin-left: 10px">
+                                                    <div class="form-group">
+                                                        <label for="">Montaje:</label>
+                                                        <select name="" id="" class="form-control" ng-model="up_cliente.sub_montaje">
+                                                            <option value="{{up_cliente.sub_montaje}}">{{up_cliente.sub_montaje}}</option>
+                                                            <option value="Poste">Poste</option>
+                                                            <option value="Plataforma">Plataforma</option>
+                                                            <option value="Estructura H">Estructura H</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+
+                                            <div class="row">
+
+                                                <div class="col-lg-5">
+                                                    <div class="form-group">
+                                                        <label for="">Tipo de transformador:</label>
+                                                        <select  ng-model="up_cliente.sub_tipotransformador" class="form-control">
+                                                            <option value="{{up_cliente.sub_tipotransformador}}">{{up_cliente.sub_tipotransformador}}</option>
+                                                            <option value="Trifasico">Trifasico</option>
+                                                            <option value="Monofasico">Monofasico</option>
+                                                            <option value="Monofasico Padmounted">Monofasico Padmounted</option>
+                                                            <option value="Trifasico Padmounted">Trifasico Padmounted</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-lg-5" style="margin-left: 10px">
+                                                    <div class="form-group">
+                                                        <label for="">Capacidad de fusibles de protección:</label>
+                                                        <input type="number" value="{{up_cliente.sub_capacidadfusibles}}" class="form-control" ng-model="up_cliente.sub_capacidadfusibles">
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <br><br>
+                                            <div class="row">
+                                                <h3><b>Información Adicional</b></h3>
+
+                                                <div class="col-lg-3">
+                                                    <div class="form-group">
+                                                        <label for="">Numero de turnos de producción:</label>
+                                                        <input type="text" value="{{up_cliente.turnos_produccion}}" class="form-control" ng-model="up_cliente.turnos_produccion">
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-lg-4" style="margin-left: 10px">
+                                                    <div class="form-group">
+                                                        <label for="">Conectados al # de corte:</label>
+                                                        <input type="text" value="{{up_cliente.conexion_num_cortes}}" class="form-control" ng-model="up_cliente.conexion_num_cortes">
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="row">
+                                                <div class="col-lg-4" style="margin-left: 10px">
+                                                    <div class="form-group">
+                                                        <label for="">Fecha de visita:</label>
+                                                        <input type="date" value="{{up_cliente.fecha_visita | amDateFormat:'DD/MM/YYYY'}}" class="form-control" ng-model="up_cliente.fecha_visita">
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="row">
+
+                                                <div class="col-lg-7">
+                                                    <div class="form-group">
+                                                        <label for="">Promesa ofrecida por EDESAL:</label>
+                                                        <textarea cols="7" rows="5" class="form-control" ng-model="up_cliente.compromisos">{{up_cliente.compromisos}}</textarea>
+                                                    </div>
+
+                                                </div>
+                                            </div>
+
+                                            <div class="row">
+                                                <div class="col-lg-7">
+                                                    <div class="form-group">
+                                                       <button ng-click="actualizarinfocliente()" class="btn btn-primary"><i class="fas fa-save"></i> Actualizar</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+
+
+
+                                        </form>
+                                         </div>
+                                         <div style="background-color: lightgrey; height: 700px; border-top: dashed 1px black" ng-hide="detallespotenciales" class="ibox-footer">
+                                        <form action="" class="form-horizontal">
+                                            <h2><i class="fas fa-user-circle"></i> Nuevo contacto</h2>
+                                            <div class="row">
+                                                <div class="col-lg-4" style="margin-left: 15px;">
+                                                    <div class="form-group">
+                                                        <label for="">Nombre:</label>
+                                                        <input type="text" class="form-control" ng-model="contacto.nombre">
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-4" style="margin-left: 10px">
+                                                    <div class="form-group">
+                                                        <label for="">Cargo:</label>
+                                                        <input type="text" class="form-control" ng-model="contacto.cargo">
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="row">
+                                                <div class="col-lg-4" style="margin-left: 15px;">
+                                                    <div class="form-group">
+                                                        <label for="">Telefono:</label>
+                                                        <input type="text" class="form-control" ng-model="contacto.telefono">
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-lg-4" style="margin-left: 10px">
+                                                    <div class="form-group">
+                                                        <label for="">Celular:</label>
+                                                        <input type="text" class="form-control" ng-model="contacto.celular">
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="row">
+                                                <div class="col-lg-4" style="margin-left: 15px">
+                                                    <div class="form-group">
+                                                        <label for="">Correo:</label>
+                                                        <input type="text" class="form-control" ng-model="contacto.correo">
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="row">
+                                                <div class="col-lg-4" style="margin-left: 15px">
+                                                    <div class="form-group">
+                                                        <button ng-click="guardarcontacto()" class="btn btn-primary" style="border: solid 1px black;"><i class="fas fa-save"></i> Guardar contacto</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="row" ng-hide="alertacontacto">
+                                                <div class="col-lg-7 alert alert-success" style="margin-left: 10px">
+                                                    <h3><i class="fas fa-info-circle"></i> Contacto guardado con exito!</h3>
+                                                </div>
+                                            </div>
+
+                                        </form>
+                                        <table class="table table-striped table-bordered table-hover" datatable="ng" dt-options="dtOptions">
+                                            <thead>
+                                            <tr>
+                                                <th style="border-right: solid 1px black; background-color: lightgrey;" class="text-center">ID</th>
+                                                <th style="border-right: solid 1px black; background-color: lightgrey;" class="text-center">Nombre</th>
+                                                <th style="border-right: solid 1px black; background-color: lightgrey;" class="text-center">Cargo</th>
+                                                <th style="border-right: solid 1px black; background-color: lightgrey;" class="text-center">Telefono</th>
+                                                <th style="border-right: solid 1px black; background-color: lightgrey;" class="text-center">Celular</th>
+                                                <th style="border-right: solid 1px black; background-color: lightgrey;" class="text-center">Correo</th>
+                                            </tr>
+                                            </thead>
+                                            <tbody>
+                                            <tr ng-repeat="contacto in contactos">
+                                                <td  class="text-center">{{contacto.id}}</td>
+                                                <td  class="">{{contacto.nombre}}</td>
+                                                <td  class="">{{contacto.cargo}}</td>
+                                                <td  class="text-center">{{contacto.teldirecto}}</td>
+                                                <td  class="text-center">{{contacto.celular}}</td>
+                                                <td  class="text-center">{{contacto.correo}}</td>
+                                            </tr>
+                                            </tbody>
+                                        </table>
+                                         </div>
+                                    
+
+                                         <div style="background-color: ghostwhite;border:1px solid black"
+                                          class="ibox-content" ng-hide="detalleshistorial">
+                                            <div style="background-color: black;"
+                                                class="col-lg-12"> <h2 style="color: yellow;font-weight: bold;">Historial del cliente :
+                                                <a id="nameCliente" style="color: white;font-weight: bold;"></a></h2> 
+                                            </div>
+                                            <div class=""><br><br><br><br>
+                                                <div class="col-lg-4"></div>
+                                                <div style="background-color: #048ABF;text-align: center;" class="col-lg-4">
+                                                    <h3 style="color: white;"> <i class="fa fa-bell"></i> Atenciones Recibidas </h3>
+                                                </div><br><br><br><br>
+                                                <table style="font-size:11px " datatable="ng" dt-options="dtOptions" class="table table-bordered table-responsive table-hover" >
+                                                    <thead>
+                                                    <tr>
+                                                    <tr>
+                                                        <th class="text-center" style="background-color: #A7C8F2;">Tipo</th>
+                                                        <th class="text-center" style="background-color: #A7C8F2;">Motivo</th>
+                                                        <th class="text-center" style="background-color: #A7C8F2;">Cliente</th>
+                                                        <th class="text-center" style="background-color: #A7C8F2;">Telefono</th>
+                                                        <th class="text-center" style="background-color: #A7C8F2;">Descripcion</th>
+                                                        <th class="text-center" style="background-color: #A7C8F2;">Fecha creacion</th>
+                                                        <th class="text-center" style="background-color: #A7C8F2;">Usuario</th>
+                                                        <th class="text-center" style="background-color: #A7C8F2;">Atencion cerrada</th>
+                                            
+                                                    </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <tr ng-repeat="atencion in atenciones" style="background-color: #D3D3D3; border-bottom: 1px solid black;">
+                                                            <td style="font-weight: bold;">{{atencion.tipoatencion}}</td>
+                                                            <td style="font-weight: bold;">{{atencion.motivoatencion}}</td>
+                                                            <td style="font-weight: bold;">{{atencion.cliente}}</td>
+                                                            <td style="font-weight: bold;">{{atencion.telefono}}</td>
+                                                            <td style="font-weight: bold;">
+                                                                <div style="width:100%; max-height:100px; overflow:auto">
+                                                                {{atencion.descripcion}}
+                                                                </div>
+                                                            </td>
+                                                            <td class="text-center" style="font-weight: bold;">{{atencion.fecha_creacion | amDateFormat:'DD/MM/YYYY H:mm'}}</td>
+                                                            <td class="text-center" style="font-weight: bold;">
+                                                                <div  style="background-color:#171287;color:white;
+                                                                font-weight:bold">{{atencion.usuarioCreacion}}</div></td>
+                                                            <td class="text-center" style="font-weight: bold;">{{atencion.estado}}</td>
+                                
+                                                         </tr>
+                                
+                                
+                                                    </tbody>
+                                                    <tfoot>
+                                
+                                                    </tfoot>
+                                                </table>
+
+
+                                                <div class="col-lg-4"></div>
+                                                <div style="background-color: #027368;text-align: center;" class="col-lg-4">
+                                                    <h3 style="color: white;"> <i class="fa fa-calendar"></i> Eventos Recibidos </h3>
+                                                </div><br><br><br><br>
+                                                <table datatable="ng" dt-options="dtOptions" class="table table-hover table-bordered">
+                                                    <thead>
+                                                        <tr>
+                                                            <th class="text-center" style="background-color: #83D4CC;">ID</th>
+                                                            <th class="text-center" style="background-color: #83D4CC;">Cliente</th>
+                                                            <th class="text-center" style="background-color: #83D4CC;">Fecha requerida (interna)</th>
+                                                            <th class="text-center" style="background-color: #83D4CC;">Fecha creacion</th>
+                                                            <th class="text-center" style="background-color: #83D4CC;">Descripcion</th>
+                                                            <th class="text-center" style="background-color: #83D4CC;">Fecha comprometida (con cliente/SH)</th>
+                                                            <th class="text-center" style="background-color: #83D4CC;">Usuario</th>
+                                                            <th class="text-center" style="background-color: #83D4CC;">Estado</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <tr ng-repeat="evento in eventosCl" style="background-color: #D3D3D3; border-bottom: 1px solid black;">
+                                                            <td style="font-weight: bold;">{{evento.id}}</td>
+                                                            <td style="font-weight: bold;">{{evento.cliente}}</td>
+                                                            <td style="font-weight: bold;" class="text-center">{{evento.fecha_compromiso | amDateFormat:'DD/MM/YYYY'}}</td>
+                                                            <td style="font-weight: bold;" class="text-center">{{evento.fecha_creacion | amDateFormat:'DD/MM/YYYY'}}</td>
+                                                            <td style="font-weight: bold;">
+                                                                <div style="width:100%; max-height:100px; overflow:auto">
+                                                                {{evento.descripcion}}
+                                                                </div>
+                                                            </td>
+                                                            <td style="font-weight: bold;" class="text-center">{{evento.fecha_resolucion | amDateFormat:'DD/MM/YYYY'}}</td>
+                                                            <td class="text-center">
+                                                                <div  style="background-color:#026B65; color:white;
+                                                                font-weight:bold"> {{evento.usuario_creacion}} </div>
+                                                            </td>
+                                                            <td style="font-weight: bold;" class="text-center">{{evento.estado}}</td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+
+
+                                                
+                                                <div class="col-lg-4" style=></div>
+                                                <div style="background-color: #F25116;text-align: center;" class="col-lg-4">
+                                                    <h3 style="color: white;"> <i class="fa fa-ticket-alt"></i> Tickets Recibidos </h3>
+                                                </div><br><br><br><br>
+                                                <table datatable="ng" dt-options="dtOptions" class="table table-responsive table-bordered">
+                                                    <thead>
+                                                     <tr>
+                                                         <th class="text-center" style="background-color: #F9BCA6;">ID de evento</th>
+                                                         <th class="text-center" style="background-color: #F9BCA6;">ID de ticket</th>
+                                                         <th class="text-center" style="background-color: #F9BCA6;">Usuario asignado</th>
+                                                         <th class="text-center" style="background-color: #F9BCA6;">Descripción</th>
+                                                         <th class="text-center" style="background-color: #F9BCA6;"><i class="fas fa-calendar-alt"></i> Solicitud</th>
+                                                         <th class="text-center" style="background-color: #F9BCA6;"><i class="fas fa-calendar-alt"></i> Fecha de entrega acordada</th>
+                                                         <th class="text-center" style="background-color: #F9BCA6;"><i class=""></i> Estado</th>
+                                                         <th class="text-center" style="background-color: #F9BCA6;"><i class="fas fa-user"></i>Usuario creador</th>
+                                                         <th class="text-center" style="background-color: #F9BCA6;"><i class="fas fa-calendar-alt"></i> Fecha de solucion</th>
+                                                     </tr>
+                                                    </thead>
+                                     
+                                                     <tbody>
+                                                         <tr ng-repeat="ticket in ticketsCl" style="background-color: #D3D3D3; ">
+                                                             <td style="font-weight: bold;" class="text-center">{{ticket.evento_id}}</td>
+                                                             <td style="font-weight: bold;" class="text-center">{{ticket.id}}</td>
+                                                             <td style="font-weight: bold;">{{ticket.nombreasignado}} {{ticket.apellidoasignado}}</td>
+                                                             <td style="font-weight: bold;">
+                                                                 <div style="width:100%; max-height:100px; overflow:auto">
+                                                                     {{ticket.descripcion}}
+                                                                 </div>
+                                                                </td>
+                                                             <td style="font-weight: bold;" class="text-center">{{ticket.fechasolicitud | amDateFormat:'DD/MM/YYYY H:mm'}}</td>
+                                                             <td style="font-weight: bold;" class="text-center">{{ticket.fechasolaprox | amDateFormat:'DD/MM/YYYY H:mm'}}</td>
+                                                             <td style="font-weight: bold;" class="text-center">{{ticket.estado}}</td>
+                                                             <td  style="font-weight: bold;" class="text-center">
+                                                                <div  style="background-color:#171287; color:white;
+                                                                font-weight:bold">
+                                                                    {{ticket.usuario_creacion}}
+                                                                </div>
+                                                            </td>
+                                                             <td style="font-weight: bold;" class="text-center">{{ticket.fechasolucion | amDateFormat:'DD/MM/YYYY H:mm'}}</td>
+                                                  
+                                                         </tr>
+                                     
+                                                     </tbody>
+                                                 </table>
+
+                                            </div>
+                                         </div>
+                                    <div class="ibox-content" ng-hide="nuevaatencion">
+                                        <h1><i class="fas fa-file-invoice"></i> Nueva ficha de atención</h1>
+
+                                        <br><br>
+
+                                        <form action="" class="form-horizontal">
+                                            <div class="row " style="height: 250px; ">
+
+                                                <div class="col-lg-12" style="border:dashed 1px black; background-color: lightyellow">
+                                                    <div  class="col-lg-8 " style="margin-left: 20px;  padding-left: 25px; " >
+                                                        <div class="form-group">
+                                                            <h2>Adjuntar Archivos</h2>
+                                                            <input id="file" name="file" type="file"  class="form-control-file"  ><br>
+                                                            <textarea ng-model="descripcionadjunto" class="form-control" name="" id="" cols="5" rows="5" placeholder="Digite la descripción del archivo"></textarea><br>
+                                                            <button type="button" ng-click="cargaradjuntoatenciones()" class="btn  btn-white " style="margin-left: 2px;border: solid 1px black;"><i class="fas fa-download"></i> Cargar archivo</button>
+                                                        </div>
+                                                    </div>
+                                                    <div  class="col-lg-6" style="margin-left: 18px; ">
+                                                        <table class="table table-bordered table-striped">
+                                                            <thead>
+                                                            <tr>
+                                                                <th style="background: darkslategrey; color:white;" class="text-center"><i class="far fa-file"></i> Archivos</th>
+                                                            </tr>
+                                                            </thead>
+                                                            <tbody>
+                                                            <tr ng-repeat="archivo in archivos">
+
+                                                                <td>{{archivo}}</td>
+                                                            </tr>
+                                                            </tbody>
+                                                        </table>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <br>
+                                            <div class="row" style="margin-top: 200px">
+                                                <div class="col-lg-4" style="margin-left: 10px">
+                                                    <div class="form-group">
+                                                        <label for="">Suministro:</label>
+                                                        <input type="text" class="form-control" readonly="readonly" ng-model="formatencion.suministro">
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-lg-4" style="margin-left: 25px">
+                                                    <div class="form-group">
+                                                        <label for="">Cliente:</label>
+                                                        <input type="text" class="form-control" readonly="readonly" ng-model="formatencion.cliente">
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="row">
+                                                <div class="col-lg-4" style="margin-left: 10px">
+                                                    <div class="form-group">
+                                                        <label for="">Nombre de contacto:</label>
+                                                        <input type="text" class="form-control" placeholder="Digite el nombre del usuario para la atención"  ng-model="formatencion.contacto">
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-lg-4">
+                                                    <div class="form-group" style="margin-left: 10px">
+                                                        <label for="">Telefono de usuario:</label>
+                                                        <input type="text" ng-model="formatencion.telefono" class="form-control">
+                                                    </div>
+                                                </div>
+
+                                            </div>
+
+                                            <div class="row">
+                                                <div class="col-lg-4" style="margin-left: 10px">
+                                                    <div class="form-group">
+                                                        <label for="">Tipo de atención:</label>
+                                                        <select name="" ng-options="tipo as tipo.nombre for tipo in tipoatenciones.availableOptions" class="form-control" ng-model="formatencion.tipoatenciones" ng-change="evt_tipoatencion()">
+                                                        </select>
+                                                    </div>
+                                                </div>
+
+
+                                                <div class="col-lg-4">
+                                                    <div class="form-group" style="margin-left: 10px">
+                                                        <label for="">Motivo de atención:</label>
+                                                        <select name="" class="form-control" ng-model="formatencion.motivoatenciones">
+                                                            <option ng-repeat="motivo in motivoatenciones.availableOptions" value="{{motivo.id}}">{{motivo.nombre}}</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+
+                                            <div class="row">
+                                                <div class="col-lg-4" style="margin-left: 10px" ng-hide="correo">
+                                                    <div class="form-group">
+                                                        <label for="">Correo:</label>
+                                                        <input type="text" class="form-control" placeholder=""  ng-model="formatencion.correo">
+                                                    </div>
+                                                </div>
+
+
+
+                                            </div>
+
+                                            <div class="row">
+                                                <div class="col-lg-4" style="margin-left: 10px" ng-hide="fax">
+                                                    <div class="form-group">
+                                                        <label for="">FAX:</label>
+                                                        <input type="text" class="form-control" placeholder=""  ng-model="formatencion.fax">
+                                                    </div>
+                                                </div>
+
+
+                                            </div>
+
+                                            <div class="row">
+                                                <div class="col-lg-4" style="margin-left: 10px" ng-hide="whatsapp">
+                                                    <div class="form-group">
+                                                        <label for="">Whatsapp:</label>
+                                                        <input type="text" class="form-control" placeholder="Numero de whatsapp"  ng-model="formatencion.whatsapp">
+                                                    </div>
+                                                </div>
+
+
+                                            </div>
+
+
+                                            <div class="row">
+                                                <div class="col-lg-8" style="margin-left: 10px">
+                                                    <div class="form-group">
+                                                        <label for="">Descripcion de atencion:</label>
+                                                        <textarea ng-model="formatencion.descripcion" class="form-control" name="" id="" cols="8" rows="5"></textarea>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="row">
+                                                <div class="col-lg-8" style="margin-left: 10px">
+                                                    <div class="form-group">
+                                                        <button type="button" ng-click="guardarFichaAtencion()" class="btn btn-md btn-primary pull-right" style="margin-left: 5px"><i class="fas fa-save"></i> Guardar ficha</button>
+                                                        <button class="btn btn-md btn-white pull-right" ng-click="cancelarnuevaatencion()" style="border:solid 1px black"><i class="fas fa-times"></i> Cancelar</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                            
+                                                <div class="col-lg-7 alert alert-success" ng-hide="alertaatencion">
+                                                    <h3><i class="fas fa-info-circle"></i> Ficha de atención creada con exito!</h3>
+                                                </div>
+
+                                                 <div class="col-lg-7 alert alert-danger" ng-hide="alertaerroratencion">
+                                                    <h3><i class="fas fa-info-circle"></i> Error al crear ficha de atención</h3>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="tab-3" class="tab-pane tab3" >
+                            <div class="col-lg-12">
+                                <table class="table table-striped table-bordered table-hover" datatable="ng" dt-options="dtOptions">
+                                    <thead>
+                                    <tr>
+                                        <th style="border-right: solid 1px black; background-color: black; color: white;" class="text-center">ID</th>
+                                        <th style="border-right: solid 1px black; background-color: black; color: white;" class="text-center">Categoria</th>
+                                        <th style="border-right: solid 1px black; background-color: black; color: white;" class="text-center">Empresa</th>
+                                        <th style="border-right: solid 1px black; background-color: black; color: white;" class="text-center">Dirección</th>
+                                        <th style="border-right: solid 1px black; background-color: black; color: white;" class="text-center">Tarifa</th>
+                                        <th style="border-right: solid 1px black; background-color: black; color: white;" class="text-center">Potencia</th>
+                                        <th style="border-right: solid 1px black; background-color: black; color: white;" class="text-center">Tension</th>
+                                        <th style="border-right: solid 1px black; background-color: black; color: white;" class="text-center"></th>
+                                        <th style="border-right: solid 1px black; background-color: black; color: white;" class="text-center"></th>
+                                        
+                                        <th style="border-right: solid 1px black; background-color: black; color: white;" class="text-center"></th>
+
+
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr ng-repeat="p in cli_compartidos">
+                                        <td  class="text-center">{{p.id}}</td>
+                                        <td  class="text-center">{{p.categoria}}</td>
+                                        <td  class="">{{p.empresa}}</td>
+                                        <td  class="">{{p.direccion}}</td>
+                                        <td  class="text-center">{{p.tarifa}}</td>
+                                        <td  class="text-center">{{p.potencia}}</td>
+                                        <td  class="text-center">{{p.tension_servicio}}</td>
+                                        <td  class="text-center"><button ng-click="formularionuevaatencion(p)" class="btn btn-xs btn-info" style="border:solid 1px black;color:black" type="button"><i class="fas fa-file"></i> Nueva atención</button></td>
+                                        <td  class="text-center"><button ng-click="verdetallespotencial(p)" class="btn btn-xs btn-warning" style="border:solid 1px black;color:black" type="button"><i class="fas fa-eye"></i> Detalles</button></td>
+                                        
+                                        <td  class="text-center"><button ng-click="verdetalleshistorials(p)" class="btn btn-xs btn-danger" style="border:solid 1px black;color:white;background-color: #056319;" type="button"><i class="fas fa-eye"></i> Historial</button></td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+
+                            <div style="background-color: ghostwhite;border:1px solid black"
+                                          class="ibox-content" ng-hide="detalleshistorials">
+                                            <div style="background-color: black;"
+                                                class="col-lg-12"> <h2 style="color: yellow;font-weight: bold;">Historial del cliente :
+                                                <a id="nameClientes" style="color: white;font-weight: bold;"></a></h2> 
+                                            </div>
+                                            <div class=""><br><br><br><br>
+                                                <div class="col-lg-4"></div>
+                                                <div style="background-color: #048ABF;text-align: center;" class="col-lg-4">
+                                                    <h3 style="color: white;"> <i class="fa fa-bell"></i> Atenciones Recibidas </h3>
+                                                </div><br><br><br><br>
+                                                <table style="font-size:11px " datatable="ng" dt-options="dtOptions" class="table table-bordered table-responsive table-hover" >
+                                                    <thead>
+                                                    <tr>
+                                                    <tr>
+                                                        <th class="text-center" style="background-color: #A7C8F2;">Tipo</th>
+                                                        <th class="text-center" style="background-color: #A7C8F2;">Motivo</th>
+                                                        <th class="text-center" style="background-color: #A7C8F2;">Cliente</th>
+                                                        <th class="text-center" style="background-color: #A7C8F2;">Telefono</th>
+                                                        <th class="text-center" style="background-color: #A7C8F2;">Descripcion</th>
+                                                        <th class="text-center" style="background-color: #A7C8F2;">Fecha creacion</th>
+                                                        <th class="text-center" style="background-color: #A7C8F2;">Usuario</th>
+                                                        <th class="text-center" style="background-color: #A7C8F2;">Atencion cerrada</th>
+                                            
+                                                    </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <tr ng-repeat="atencion in atencionesCli" style="background-color: #D3D3D3; border-bottom: 1px solid black;">
+                                                            <td style="font-weight: bold;">{{atencion.tipoatencion}}</td>
+                                                            <td style="font-weight: bold;">{{atencion.motivoatencion}}</td>
+                                                            <td style="font-weight: bold;">{{atencion.cliente}}</td>
+                                                            <td style="font-weight: bold;">{{atencion.telefono}}</td>
+                                                            <td style="font-weight: bold;">
+                                                                <div style="width:100%; max-height:100px; overflow:auto">
+                                                                {{atencion.descripcion}}
+                                                                </div>
+                                                            </td>
+                                                            <td class="text-center" style="font-weight: bold;">{{atencion.fecha_creacion | amDateFormat:'DD/MM/YYYY H:mm'}}</td>
+                                                            <td class="text-center" style="font-weight: bold;">
+                                                                <div  style="background-color:#171287;color:white;
+                                                                font-weight:bold">{{atencion.usuarioCreacion}}</div></td>
+                                                            <td class="text-center" style="font-weight: bold;">{{atencion.estado}}</td>
+                                
+                                                         </tr>
+                                
+                                
+                                                    </tbody>
+                                                    <tfoot>
+                                
+                                                    </tfoot>
+                                                </table>
+
+
+                                                <div class="col-lg-4"></div>
+                                                <div style="background-color: #027368;text-align: center;" class="col-lg-4">
+                                                    <h3 style="color: white;"> <i class="fa fa-calendar"></i> Eventos Recibidos </h3>
+                                                </div><br><br><br><br>
+                                                <table datatable="ng" dt-options="dtOptions" class="table table-hover table-bordered">
+                                                    <thead>
+                                                        <tr>
+                                                            <th class="text-center" style="background-color: #83D4CC;">ID</th>
+                                                            <th class="text-center" style="background-color: #83D4CC;">Cliente</th>
+                                                            <th class="text-center" style="background-color: #83D4CC;">Fecha requerida (interna)</th>
+                                                            <th class="text-center" style="background-color: #83D4CC;">Fecha creacion</th>
+                                                            <th class="text-center" style="background-color: #83D4CC;">Descripcion</th>
+                                                            <th class="text-center" style="background-color: #83D4CC;">Fecha comprometida (con cliente/SH)</th>
+                                                            <th class="text-center" style="background-color: #83D4CC;">Usuario</th>
+                                                            <th class="text-center" style="background-color: #83D4CC;">Estado</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <tr ng-repeat="evento in eventosCli" style="background-color: #D3D3D3; border-bottom: 1px solid black;">
+                                                            <td style="font-weight: bold;">{{evento.id}}</td>
+                                                            <td style="font-weight: bold;">{{evento.cliente}}</td>
+                                                            <td style="font-weight: bold;" class="text-center">{{evento.fecha_compromiso | amDateFormat:'DD/MM/YYYY'}}</td>
+                                                            <td style="font-weight: bold;" class="text-center">{{evento.fecha_creacion | amDateFormat:'DD/MM/YYYY'}}</td>
+                                                            <td style="font-weight: bold;">
+                                                                <div style="width:100%; max-height:100px; overflow:auto">
+                                                                {{evento.descripcion}}
+                                                                </div>
+                                                            </td>
+                                                            <td style="font-weight: bold;" class="text-center">{{evento.fecha_resolucion | amDateFormat:'DD/MM/YYYY'}}</td>
+                                                            <td class="text-center">
+                                                                <div  style="background-color:#026B65; color:white;
+                                                                font-weight:bold"> {{evento.usuario_creacion}} </div>
+                                                            </td>
+                                                            <td style="font-weight: bold;" class="text-center">{{evento.estado}}</td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+
+
+                                                
+                                                <div class="col-lg-4" style=></div>
+                                                <div style="background-color: #F25116;text-align: center;" class="col-lg-4">
+                                                    <h3 style="color: white;"> <i class="fa fa-ticket-alt"></i> Tickets Recibidos </h3>
+                                                </div><br><br><br><br>
+                                                <table datatable="ng" dt-options="dtOptions" class="table table-responsive table-bordered">
+                                                    <thead>
+                                                     <tr>
+                                                         <th class="text-center" style="background-color: #F9BCA6;">ID de evento</th>
+                                                         <th class="text-center" style="background-color: #F9BCA6;">ID de ticket</th>
+                                                         <th class="text-center" style="background-color: #F9BCA6;">Usuario asignado</th>
+                                                         <th class="text-center" style="background-color: #F9BCA6;">Descripción</th>
+                                                         <th class="text-center" style="background-color: #F9BCA6;"><i class="fas fa-calendar-alt"></i> Solicitud</th>
+                                                         <th class="text-center" style="background-color: #F9BCA6;"><i class="fas fa-calendar-alt"></i> Fecha de entrega acordada</th>
+                                                         <th class="text-center" style="background-color: #F9BCA6;"><i class=""></i> Estado</th>
+                                                         <th class="text-center" style="background-color: #F9BCA6;"><i class="fas fa-user"></i>Usuario creador</th>
+                                                         <th class="text-center" style="background-color: #F9BCA6;"><i class="fas fa-calendar-alt"></i> Fecha de solucion</th>
+                                                     </tr>
+                                                    </thead>
+                                     
+                                                     <tbody>
+                                                         <tr ng-repeat="ticket in ticketsCli" style="background-color: #D3D3D3; ">
+                                                             <td style="font-weight: bold;" class="text-center">{{ticket.evento_id}}</td>
+                                                             <td style="font-weight: bold;" class="text-center">{{ticket.id}}</td>
+                                                             <td style="font-weight: bold;">{{ticket.nombreasignado}} {{ticket.apellidoasignado}}</td>
+                                                             <td style="font-weight: bold;">
+                                                                 <div style="width:100%; max-height:100px; overflow:auto">
+                                                                     {{ticket.descripcion}}
+                                                                 </div>
+                                                                </td>
+                                                             <td style="font-weight: bold;" class="text-center">{{ticket.fechasolicitud | amDateFormat:'DD/MM/YYYY H:mm'}}</td>
+                                                             <td style="font-weight: bold;" class="text-center">{{ticket.fechasolaprox | amDateFormat:'DD/MM/YYYY H:mm'}}</td>
+                                                             <td style="font-weight: bold;" class="text-center">{{ticket.estado}}</td>
+                                                             <td  style="font-weight: bold;" class="text-center">
+                                                                <div  style="background-color:#171287; color:white;
+                                                                font-weight:bold">
+                                                                    {{ticket.usuario_creacion}}
+                                                                </div>
+                                                            </td>
+                                                             <td style="font-weight: bold;" class="text-center">{{ticket.fechasolucion | amDateFormat:'DD/MM/YYYY H:mm'}}</td>
+                                                  
+                                                         </tr>
+                                     
+                                                     </tbody>
+                                                 </table>
+
+                                            </div>
+                                         </div>
+                            <div class="col-lg-12">
+                                <div style="background-color: ghostwhite;" class="ibox-content" ng-hide="detallespotenciales">
+                                    <form action="" class="form-horizontal">
+                                        <h1><i class="fas fa-pen"></i> Detalles para actualizar</h1>
+                                        <div class="row" style="margin-top: 25px">
+                                            <h3><b>Información General</b></h3>
+                                            <div class="col-lg-6">
+                                                <div class="form-group">
+                                                    <label for="">Empresa:</label>
+                                                    <input type="text" class="form-control" ng-model="up_cliente.empresa">
+                                                </div>
+                                            </div>
+
+                                            <div class="col-lg-4" style="margin-left: 10px">
+                                                <div class="form-group">
+                                                    <label for="">Rubro:</label>
+                                                    <input type="text" class="form-control" ng-model="up_cliente.rubro">
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class=""></div>
+
+                                        <div class="row">
+                                            <div class="col-lg-6">
+                                                <div class="form-group">
+                                                    <label for="">Direccion:</label>
+                                                    <input type="text" class="form-control" ng-model="up_cliente.direccion">
+                                                </div>
+                                            </div>
+
+                                            <div class="col-lg-4" style="margin-left: 10px">
+                                                <div class="form-group">
+                                                    <label for="">PBX:</label>
+                                                    <input type="text" class="form-control" ng-model="up_cliente.pbx">
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <br><br>
+                                        <div class="row">
+                                            <h3><b>Datos tecnicos de energía</b></h3>
+                                            <div class="col-lg-4">
+                                                <div class="form-group">
+                                                    <label for="">Tension:</label>
+                                                    <select name="" class="form-control" ng-model="up_cliente.tension_servicio" id="">
+                                                        <option value="{{up_cliente.tension_servicio}}">{{up_cliente.tension_servicio}}</option>
+                                                        <option value="MT">MT</option>
+                                                        <option value="BT">BT</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-lg-3" style="margin-left: 10px">
+                                                <div class="form-group">
+                                                    <label for="">Fases:</label>
+                                                    <select class="form-control" name="" id="" ng-model="up_cliente.fases">
+                                                        <option value="{{up_cliente.fases}}">{{up_cliente.fases}}</option>
+                                                        <option value="1">1</option>
+                                                        <option value="2">2</option>
+                                                        <option value="3">3</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-lg-3" style="margin-left: 10px">
+                                                <div class="form-group">
+                                                    <label for="">Hilos:</label>
+                                                    <select  class="form-control" name="" id="" ng-model="up_cliente.hilos">
+                                                        <option value="{{up_cliente.uso_servicio}}">{{up_cliente.hilos}}</option>
+                                                        <option value="2">2</option>
+                                                        <option value="3">3</option>
+                                                        <option value="4">4</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="col-lg-4">
+                                                <div class="form-group">
+                                                    <label for="">Uso del servicio:</label>
+                                                    <select name="" class="form-control" ng-model="up_cliente.uso_servicio">
+                                                        <option value="{{up_cliente.uso_servicio}}">{{up_cliente.uso_servicio}}</option>
+                                                        <option value="Residencial">Residencial</option>
+                                                        <option value="Residencial">Comercial</option>
+                                                        <option value="Residencial">Industrial</option>
+                                                        <option value="Residencial">Provisional</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-lg-3" style="margin-left: 10px">
+                                                <div class="form-group">
+                                                    <label for="">Tarifa:</label>
+                                                    <select name=""  class="form-control" ng-model="up_cliente.tarifa">
+                                                        <option value="{{up_cliente.tarifa}}">{{up_cliente.tarifa}}</option>
+                                                        <option value="1R">1R</option>
+                                                        <option value="1AP">1AP</option>
+                                                        <option value="1G">1G</option>
+                                                        <option value="MBP">MBP</option>
+                                                        <option value="MMP">MMP</option>
+                                                        <option value="MBH">MBH</option>
+                                                        <option value="MMH">MMH</option>
+                                                        <option value="GMB">GMB</option>
+                                                        <option value="GMH">GMH</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-lg-3" style="margin-left: 10px">
+                                                <div class="form-group">
+                                                    <label for="">Potencia:</label>
+                                                    <input type="number" value="{{up_cliente.potencia}}" class="form-control" ng-model="up_cliente.potencia">
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="row">
+
+                                            <div class="col-lg-5">
+                                                <div class="form-group">
+                                                    <label for="">Inmueble Propiedad de:</label>
+                                                    <input type="text" value="{{up_cliente.sub_propiedad}}" class="form-control" ng-model="up_cliente.sub_propiedad">
+                                                </div>
+                                            </div>
+
+                                            <div class="col-lg-5" style="margin-left: 10px">
+                                                <div class="form-group">
+                                                    <label for="">Ubicación:</label>
+                                                    <input type="text" value="{{up_cliente.sub_ubicacion}}" class="form-control" ng-model="up_cliente.sub_ubicacion">
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="row">
+
+                                            <div class="col-lg-4">
+                                                <div class="form-group">
+                                                    <label for="">KVA Instalados:</label>
+                                                    <input type="number" value="{{up_cliente.sub_kva_instalados}}" class="form-control" ng-model="up_clientesub_.kva_instalados">
+                                                </div>
+                                            </div>
+
+                                            <div class="col-lg-4" style="margin-left: 10px">
+                                                <div class="form-group">
+                                                    <label for="">Transformadores instalados:</label>
+                                                    <input type="number" value="{{up_cliente.sub_transformadores}}" class="form-control" ng-model="up_cliente.sub_transformadores">
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="row">
+
+                                            <div class="col-lg-4">
+                                                <div class="form-group">
+                                                    <label for="">KVA requeridos:</label>
+                                                    <input value="{{up_cliente.sub_kva_requeridos}}" type="text" class="form-control" ng-model="up_cliente.sub_kva_requeridos">
+                                                </div>
+                                            </div>
+
+                                            <div class="col-lg-4" style="margin-left: 10px">
+                                                <div class="form-group">
+                                                    <label for="">Transformadores requeridos:</label>
+                                                    <input type="number" value="{{up_cliente.sub_transformadores_req}}" class="form-control" ng-model="up_cliente.sub_transformadores_req">
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="row">
+
+
+
+                                            <div class="col-lg-3" >
+                                                <div class="form-group">
+                                                    <label for="">Conexion:</label>
+                                                    <select name="" id="" class="form-control" ng-model="up_cliente.sub_conexion">
+                                                        <option value="{{up_cliente.sub_conexion}}">{{up_cliente.sub_conexion}}</option>
+                                                        <option value="Estrella">Estrella</option>
+                                                        <option value="Delta">Delta</option>
+                                                        <option value="Delta Abierta">Delta Abierta</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-lg-3" style="margin-left: 10px">
+                                                <div class="form-group">
+                                                    <label for="">Montaje:</label>
+                                                    <select name="" id="" class="form-control" ng-model="up_cliente.sub_montaje">
+                                                        <option value="{{up_cliente.sub_montaje}}">{{up_cliente.sub_montaje}}</option>
+                                                        <option value="Poste">Poste</option>
+                                                        <option value="Plataforma">Plataforma</option>
+                                                        <option value="Estructura H">Estructura H</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+
+
+                                        <div class="row">
+
+                                            <div class="col-lg-5">
+                                                <div class="form-group">
+                                                    <label for="">Tipo de transformador:</label>
+                                                    <select  ng-model="up_cliente.sub_tipotransformador" class="form-control">
+                                                        <option value="{{up_cliente.sub_tipotransformador}}">{{up_cliente.sub_tipotransformador}}</option>
+                                                        <option value="Trifasico">Trifasico</option>
+                                                        <option value="Monofasico">Monofasico</option>
+                                                        <option value="Monofasico Padmounted">Monofasico Padmounted</option>
+                                                        <option value="Trifasico Padmounted">Trifasico Padmounted</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-lg-5" style="margin-left: 10px">
+                                                <div class="form-group">
+                                                    <label for="">Capacidad de fusibles de protección:</label>
+                                                    <input type="number" value="{{up_cliente.sub_capacidadfusibles}}" class="form-control" ng-model="up_cliente.sub_capacidadfusibles">
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <br><br>
+                                        <div class="row">
+                                            <h3><b>Información Adicional</b></h3>
+                                            <div class="col-lg-3">
+                                                <div class="form-group">
+                                                    <label for="">Numero de turnos de producción:</label>
+                                                    <input type="text" value="{{up_cliente.turnos_produccion}}" class="form-control" ng-model="up_cliente.turnos_produccion">
+                                                </div>
+                                            </div>
+
+                                            <div class="col-lg-4" style="margin-left: 10px">
+                                                <div class="form-group">
+                                                    <label for="">Conectados al # de corte:</label>
+                                                    <input type="text" value="{{up_cliente.conexion_num_cortes}}" class="form-control" ng-model="up_cliente.conexion_num_cortes">
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="col-lg-4" style="margin-left: 10px">
+                                                <div class="form-group">
+                                                    <label for="">Fecha de visita:</label>
+                                                    <input type="date" value="{{up_cliente.fecha_visita | amDateFormat:'DD/MM/YYYY'}}" class="form-control" ng-model="up_cliente.fecha_visita">
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="row">
+
+                                            <div class="col-lg-7">
+                                                <div class="form-group">
+                                                    <label for="">Promesa ofrecida por EDESAL:</label>
+                                                    <textarea cols="7" rows="5" class="form-control" ng-model="up_cliente.compromisos">{{up_cliente.compromisos}}</textarea>
+                                                </div>
+
+                                            </div>
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="col-lg-7">
+                                                <div class="form-group">
+                                                    <button ng-click="actualizarinfocliente()" class="btn btn-primary"><i class="fas fa-save"></i> Actualizar</button>
+                                                </div>
+                                            </div>
+                                        </div>
+
+
+
+
+                                    </form>
+                                </div>
+                                <div style="background-color: lightgrey; height: 700px; border-top: dashed 1px black" ng-hide="detallespotenciales" class="ibox-footer">
+                                    <form action="" class="form-horizontal">
+                                        <h2><i class="fas fa-user-circle"></i> Nuevo contacto</h2>
+                                        <div class="row">
+                                            <div class="col-lg-4" style="margin-left: 15px;">
+                                                <div class="form-group">
+                                                    <label for="">Nombre:</label>
+                                                    <input type="text" class="form-control" ng-model="contacto.nombre">
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-4" style="margin-left: 10px">
+                                                <div class="form-group">
+                                                    <label for="">Cargo:</label>
+                                                    <input type="text" class="form-control" ng-model="contacto.cargo">
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="col-lg-4" style="margin-left: 15px;">
+                                                <div class="form-group">
+                                                    <label for="">Telefono:</label>
+                                                    <input type="text" class="form-control" ng-model="contacto.telefono">
+                                                </div>
+                                            </div>
+
+                                            <div class="col-lg-4" style="margin-left: 10px">
+                                                <div class="form-group">
+                                                    <label for="">Celular:</label>
+                                                    <input type="text" class="form-control" ng-model="contacto.celular">
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="col-lg-4" style="margin-left: 15px">
+                                                <div class="form-group">
+                                                    <label for="">Correo:</label>
+                                                    <input type="text" class="form-control" ng-model="contacto.correo">
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="col-lg-4" style="margin-left: 15px">
+                                                <div class="form-group">
+                                                    <button ng-click="guardarcontacto()" class="btn btn-primary" style="border: solid 1px black;"><i class="fas fa-save"></i> Guardar contacto</button>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="row" ng-hide="alertacontacto">
+                                            <div class="col-lg-7 alert alert-success" style="margin-left: 10px">
+                                                <h3><i class="fas fa-info-circle"></i> Contacto guardado con exito!</h3>
+                                            </div>
+                                        </div>
+
+                                    </form>
+                                    <table class="table table-striped table-bordered table-hover" datatable="ng" dt-options="dtOptions">
+                                        <thead>
+                                        <tr>
+                                            <th style="border-right: solid 1px black; background-color: lightgrey;" class="text-center">ID</th>
+                                            <th style="border-right: solid 1px black; background-color: lightgrey;" class="text-center">Nombre</th>
+                                            <th style="border-right: solid 1px black; background-color: lightgrey;" class="text-center">Cargo</th>
+                                            <th style="border-right: solid 1px black; background-color: lightgrey;" class="text-center">Telefono</th>
+                                            <th style="border-right: solid 1px black; background-color: lightgrey;" class="text-center">Celular</th>
+                                            <th style="border-right: solid 1px black; background-color: lightgrey;" class="text-center">Correo</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        <tr ng-repeat="contacto in contactos">
+                                            <td  class="text-center">{{contacto.id}}</td>
+                                            <td  class="">{{contacto.nombre}}</td>
+                                            <td  class="">{{contacto.cargo}}</td>
+                                            <td  class="text-center">{{contacto.teldirecto}}</td>
+                                            <td  class="text-center">{{contacto.celular}}</td>
+                                            <td  class="text-center">{{contacto.correo}}</td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <div class="ibox-content" ng-hide="nuevaatencion">
+                                    <h1><i class="fas fa-file-invoice"></i> Nueva ficha de atención</h1>
+
+                                    <br><br>
+
+                                    <form action="" class="form-horizontal">
+                                        <div class="row " style="height: 250px; margin-bottom: 25px ">
+
+                                            <div class="col-lg-12" style="border:dashed 1px black; background-color: lightyellow">
+                                                <div  class="col-lg-8 " style="margin-left: 20px;  padding-left: 25px; " >
+                                                    <div class="form-group">
+                                                        <h2>Adjuntar Archivos</h2>
+                                                        <input id="file" name="file" type="file"  class="form-control-file"  ><br>
+                                                        <textarea ng-model="descripcionadjunto" class="form-control" name="" id="" cols="5" rows="5" placeholder="Digite la descripción del archivo"></textarea><br>
+                                                        <button type="button" ng-click="cargaradjuntoatenciones()" class="btn  btn-white " style="margin-left: 2px;border: solid 1px black;"><i class="fas fa-download"></i> Cargar archivo</button>
+                                                    </div>
+                                                </div>
+                                                <div  class="col-lg-6" style="margin-left: 18px; ">
+                                                    <table class="table table-bordered table-striped">
+                                                        <thead>
+                                                        <tr>
+                                                            <th style="background: darkslategrey; color:white;" class="text-center"><i class="far fa-file"></i> Archivos</th>
+                                                        </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                        <tr ng-repeat="archivo in archivos">
+
+                                                            <td>{{archivo}}</td>
+                                                        </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-lg-4" style="margin-left: 10px">
+                                                <div class="form-group">
+                                                    <label for="">Suministro:</label>
+                                                    <input type="text" class="form-control" readonly="readonly" ng-model="formatencion.suministro">
+                                                </div>
+                                            </div>
+
+                                            <div class="col-lg-4" style="margin-left: 25px">
+                                                <div class="form-group">
+                                                    <label for="">Cliente:</label>
+                                                    <input type="text" class="form-control" readonly="readonly" ng-model="formatencion.cliente">
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="col-lg-4" style="margin-left: 10px">
+                                                <div class="form-group">
+                                                    <label for="">Nombre de contacto:</label>
+                                                    <input type="text" class="form-control" placeholder="Digite el nombre del usuario para la atención"  ng-model="formatencion.nombreusuario">
+                                                </div>
+                                            </div>
+
+                                            <div class="col-lg-4">
+                                                <div class="form-group" style="margin-left: 10px">
+                                                    <label for="">Telefono de usuario:</label>
+                                                    <input type="text" ng-model="formatencion.telefono" class="form-control">
+                                                </div>
+                                            </div>
+
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="col-lg-4" style="margin-left: 10px">
+                                                <div class="form-group">
+                                                    <label for="">Tipo de atención:</label>
+                                                    <select name="" ng-options="tipo as tipo.nombre for tipo in tipoatenciones.availableOptions" class="form-control" ng-model="formatencion.tipoatenciones" ng-change="evt_tipoatencion()">
+                                                    </select>
+                                                </div>
+                                            </div>
+
+
+                                            <div class="col-lg-4">
+                                                <div class="form-group" style="margin-left: 10px">
+                                                    <label for="">Motivo de atención:</label>
+                                                    <select name="" class="form-control" ng-model="formatencion.motivoatenciones">
+                                                        <option ng-repeat="motivo in motivoatenciones.availableOptions" value="{{motivo.id}}">{{motivo.nombre}}</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="col-lg-4" style="margin-left: 10px" ng-hide="correo">
+                                                <div class="form-group">
+                                                    <label for="">Correo:</label>
+                                                    <input type="text" class="form-control" placeholder=""  ng-model="formatencion.correo">
+                                                </div>
+                                            </div>
+
+
+
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="col-lg-4" style="margin-left: 10px" ng-hide="fax">
+                                                <div class="form-group">
+                                                    <label for="">FAX:</label>
+                                                    <input type="text" class="form-control" placeholder=""  ng-model="formatencion.fax">
+                                                </div>
+                                            </div>
+
+
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="col-lg-4" style="margin-left: 10px" ng-hide="whatsapp">
+                                                <div class="form-group">
+                                                    <label for="">Whatsapp:</label>
+                                                    <input type="text" class="form-control" placeholder="Numero de whatsapp"  ng-model="formatencion.whatsapp">
+                                                </div>
+                                            </div>
+
+
+                                        </div>
+
+
+                                        <div class="row">
+                                            <div class="col-lg-8" style="margin-left: 10px">
+                                                <div class="form-group">
+                                                    <label for="">Descripcion de atencion:</label>
+                                                    <textarea ng-model="formatencion.descripcion" class="form-control" name="" id="" cols="8" rows="5"></textarea>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="col-lg-8" style="margin-left: 10px">
+                                                <div class="form-group">
+                                                    <button type="button" ng-click="guardarFichaAtencion()" class="btn btn-md btn-primary pull-right" style="margin-left: 5px"><i class="fas fa-save"></i> Guardar ficha</button>
+                                                    <button class="btn btn-md btn-white pull-right" ng-click="cancelarnuevaatencion()" style="border:solid 1px black"><i class="fas fa-times"></i> Cancelar</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-lg-7 alert alert-success" ng-hide="alertaatencion">
+                                                <h3><i class="fas fa-info-circle"></i> Ficha de atención creada con exito!</h3>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="row">
+
+            </div>
+
+        </div>
+
+    </div>
+</div>

@@ -1,0 +1,298 @@
+<div class="row">
+    <div class="panel panel-default" style="border:solid 1px lightgrey">
+        <div class="panel-heading" style="height: 100px">
+            <div class="panel-title">
+                <ul class="nav nav-tabs">
+
+                    <li class="active">
+                        <a data-toggle="tab" href=".tabMy">
+                            <button id="miTab"> 
+                            <i class="fa fa-user"></i> Mis Atenciones
+                            </button>
+                        </a>
+                    </li>
+                    <li class="">
+                        <a data-toggle="tab" href=".tabOthers">
+                            <button id="otrosTab"> 
+                                <i class="fa fa-users"></i> Atenciones de otros usuarios a mis clientes
+                            </button>
+                        </a>
+                    </li>
+              </ul>
+                
+                
+            </div>
+        </div>
+        <div class="tab-content">
+            <div class="tab-pane active tabMy">
+                    <div class="col-lg-8" style="background-color: #128306; color: white;
+                    font-size: 18px;">
+                        <i class="fa fa-bell" ></i> <b>Mis atenciones realizadas a mis clientes</b>
+                    </div><br><br><br><br>
+                    <table style="font-size:11px " datatable="ng" dt-options="dtOptions" class="table table-bordered table-responsive table-hover" >
+                        <thead>
+                        <tr>
+                        <tr>
+                            <th></th>
+                            
+                            <th class="text-center">NIS</th>
+                            <th class="text-center">Tipo</th>
+                            <th class="text-center">Motivo</th>
+                            <th class="text-center">Cliente</th>
+                            <th class="text-center">Contacto</th>
+                            <th class="text-center">Telefono</th>
+                            <th class="text-center">Descripcion</th>
+                            <th class="text-center">Fecha creacion</th>
+                            <th class="text-center">Atencion cerrada</th>
+                            <th class="text-center"></th>
+                            <th class="text-center"></th>
+
+                        </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="atencion in atenciones">
+                                <td ng-if="atencion.num_suministro==0" style="background-color: lightcoral"></td>
+                                <td ng-if="atencion.num_suministro!=0" style="background-color: whitesmoke"></td>
+                            
+                                <td class="text-center" ng-if="atencion.num_suministro!=0">{{atencion.num_suministro}}</td>
+                                <td class="text-center" ng-if="atencion.num_suministro==0">CLIENTE Prospecto</td>
+                                <td>{{atencion.tipoatencion}}</td>
+                                <td>{{atencion.motivoatencion}}</td>
+                                <td>{{atencion.cliente}}</td>
+                                <td>{{atencion.contacto}}</td>
+                                <td>{{atencion.telefono}}</td>
+                                <td>
+                                    <div style="width:100%; max-height:100px; overflow:auto">
+                                    {{atencion.descripcion}}
+                                    </div>
+                                </td>
+                                <td class="text-center">{{atencion.fecha_creacion | amDateFormat:'DD/MM/YYYY H:mm'}}</td>
+                                <td class="text-center">{{atencion.estado}}</td>
+
+                                <td><button ng-click="nuevoevento(atencion)" class="btn btn-white btn-xs" style="border: solid 1px black;"><i class="fas fa-calendar"></i> Nuevo evento</button></td>
+                                <td><button ng-click="veradjuntos(atencion)" class="btn btn-white btn-xs" style="border: solid 1px black;"><i class="fas fa-eye"></i> Adjuntos</button></td>
+                            </tr>
+
+
+                        </tbody>
+                        <tfoot>
+
+                        </tfoot>
+                    </table>
+            </div>
+                
+
+            <div id="tab-2" class="tab-pane tabOthers">
+                <div class="panel-body" style="overflow-y: hidden; overflow-x: scroll">
+                        <div class="col-lg-8" style="background-color: #04546D; color: white;
+                        font-size: 18px;font-weight: bold;">
+                            <i class="fa fa-users" ></i> Atenciones que mi clientes recibieron de otros usuarios <b></b>
+                        </div><br><br><br><br>
+                <table style="font-size:11px " datatable="ng" dt-options="dtOptions" class="table table-bordered table-responsive table-hover" >
+                    <thead>
+                    <tr>
+                    <tr>
+                        <th></th>
+                        <th class="text-center">Tipo</th>
+                        <th class="text-center">Motivo</th>
+                        <th class="text-center">Cliente</th>
+                        <th class="text-center">Telefono</th>
+                        <th class="text-center">Descripcion</th>
+                        <th class="text-center">Fecha creacion</th>
+                        <th class="text-center">Usuario</th>
+                        <th class="text-center">Atencion cerrada</th>
+                        <th class="text-center"></th>
+                        <th class="text-center"></th>
+
+                    </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="atencion in atencionesCl">
+                            <td class="text-center" ng-if="atencion.num_suministro!=0">{{atencion.num_suministro}}</td>
+                            <td class="text-center" ng-if="atencion.num_suministro==0">CLIENTE Prospecto</td>
+                         
+                            <td>{{atencion.tipoatencion}}</td>
+                            <td>{{atencion.motivoatencion}}</td>
+                            <td>{{atencion.cliente}}</td>
+                            <td>{{atencion.telefono}}</td>
+                            <td>
+                                <div style="width:100%; max-height:100px; overflow:auto">
+                                {{atencion.descripcion}}
+                                </div>
+                            </td>
+                            <td class="text-center">{{atencion.fecha_creacion | amDateFormat:'DD/MM/YYYY H:mm'}}</td>
+                            <td class="text-center">
+                                <div  style="background-color:#171287;color:white;
+                                font-weight:bold">{{atencion.usuarioCreacion}}</div></td>
+                            <td class="text-center">{{atencion.estado}}</td>
+
+                            <td><button ng-click="nuevoevento(atencion)" class="btn btn-white btn-xs" style="border: solid 1px black;"><i class="fas fa-calendar"></i> Nuevo evento</button></td>
+                            <td><button ng-click="veradjuntos(atencion)" class="btn btn-white btn-xs" style="border: solid 1px black;"><i class="fas fa-eye"></i> Adjuntos</button></td>
+                        </tr>
+
+
+                    </tbody>
+                    <tfoot>
+
+                    </tfoot>
+                </table>
+                </div>
+            </div>
+
+
+            <div class="panel-footer" ng-hide="adjuntosatenciones">
+                <table class="table table-bordered table-hover">
+                    <thead>
+                        <tr>
+                            <th class="text-center" style="background: black; color: white; width: 150px">Descripcion</th>
+                            <th class="text-center" style="background: black; color: white; width: 150px">Tipo de archivo</th>
+                            <th  class="text-center" style="background: black; color: white; width: 20px">Archivo</th>
+                            <th class="text-center" style="background: black; color: white; width: 20px"><i class="fas fa-eye"></i></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="archivo in archivosadjuntos">
+                            <td style="border:solid 1px black">{{archivo.descripcion}}</td>
+                            <td class="text-center" style="border:solid 1px black">{{archivo.tipo}}</td>
+                            <td class="text-center" style="border:solid 1px black" >{{archivo.adjunto}}</td>
+                            <td style="border:solid 1px black" class="text-center"><a class="btn btn-xs btn-white" style="border:solid 1px black" target="_blank" ng-href="files/{{archivo.adjunto}}"><i class="fas fa-eye"></i> Visualizar</a></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+
+            <div style="background-color: white" class="panel-footer" ng-hide="formnuevoevento">
+                <h1><i class="fas fa-calendar-alt"></i> Nuevo Evento</h1>
+                <br><br>
+                <form class="form-horizontal">
+
+                    <div class="row " style="height: 250px; margin-bottom: 25px ">
+
+                        <div class="col-lg-12" style="border:dashed 1px black; background-color: lightyellow">
+                            <div  class="col-lg-8 " style="margin-left: 20px;  padding-left: 25px; " >
+                                <div class="form-group">
+                                    <h2>Adjuntar Archivos</h2>
+                                    <input id="file" name="file" type="file"  class="form-control-file"  ><br>
+                                    <textarea ng-model="descripcionadjunto" class="form-control" name="" id="" cols="5" rows="5" placeholder="Digite la descripción del archivo"></textarea><br>
+
+                                    <br><select name="" id="" ng-model="tipoarchivo" class="form-control">
+                                    <option value="">Seleccione un tipo de archivo...</option>
+                                    <option ng-repeat="t in tiposarchivos.availableOptions" value="{{t.id}}">{{t.nombre}}</option>
+                                </select>
+                                    <br><button type="button" ng-click="cargaradjuntoatenciones()" class="btn  btn-white " style="margin-left: 2px;border: solid 1px black;"><i class="fas fa-download"></i> Cargar archivo</button>
+                                </div>
+                            </div>
+                            <div  class="col-lg-6" style="margin-left: 18px; ">
+                                <table class="table table-bordered table-striped">
+                                    <thead>
+                                    <tr>
+                                        <th style="background: darkslategrey; color:white;" class="text-center"><i class="far fa-file"></i> Archivos</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr ng-repeat="archivo in archivos">
+
+                                        <td>{{archivo}}</td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row" style="margin-top: 250px">
+                        <div class="col-lg-4" style="margin-left: 10px">
+                            <div class="form-group">
+                                <label for="">Suministro:</label>
+                                <input type="text" class="form-control" readonly="readonly" ng-model="formevento.suministro">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-lg-4" style="margin-left: 10px">
+                            <div class="form-group">
+                                <label for="">Contacto:</label>
+                                <input type="text" class="form-control" placeholder=""  ng-model="formevento.contacto">
+                            </div>
+                        </div>
+
+                        <div class="col-lg-4" style="margin-left: 105px">
+                            <div class="form-group">
+                                <label for="">Cliente:</label>
+                                <input type="text" readonly="readonly" class="form-control" placeholder=""  ng-model="formevento.nombrecliente">
+                            </div>
+                        </div>
+
+                    </div>
+
+
+                    <div class="row">
+                        <div ng-hide="frmticket" class="col-lg-4" style="margin-left: 10px">
+                            <div class="form-group">
+                                <label for="">ID de ticket:</label>
+                                <input  type="text" class="form-control" readonly="readonly" placeholder=""  ng-model="formevento.ticket" >
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+
+                        <div class="col-lg-4" style="margin-left: 10px">
+                            <div class="form-group">
+                                <label for="">Fecha y hora de compromiso (Interno):</label>
+                                <input  type="text" ng-model="formevento.fechacompromiso | amDateFormat:'DD/MM/YYYY h:mm'" class="form-control">
+                                <datetimepicker   style="margin-left: 5px" data-ng-model="formevento.fechacompromiso" ></datetimepicker>
+                            </div>
+                        </div>
+
+
+
+                        <div class="col-lg-4" style="margin-left: 105px">
+                            <div class="form-group" >
+                                <label for="">Fecha y hora de resolución (Con el cliente):</label>
+                                <input type="text" ng-model="formevento.fecharesolucion | amDateFormat:'DD/MM/YYYY h:mm'" class="form-control">
+                                <datetimepicker style="margin-left: 5px" data-ng-model="formevento.fecharesolucion"></datetimepicker>
+                            </div>
+                        </div>
+                    </div>
+
+
+
+
+                    <div class="row">
+                        <div class="col-lg-8" style="margin-left: 10px">
+                            <div class="form-group">
+                                <label for="">Descripcion:</label>
+                                <textarea ng-model="formevento.descripcion " class="form-control" name="" id="" cols="8" rows="5"></textarea>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-lg-8" style="margin-left: 10px">
+                            <div class="form-group">
+                                <button type="button" ng-click="guardarEvento()" class="btn btn-md btn-primary pull-right" style="margin-left: 5px"><i class="fas fa-save"></i> Guardar Evento</button>
+                                <button class="btn btn-md btn-white pull-right" ng-click="cancelarEvento()" style="border:solid 1px black"><i class="fas fa-times"></i> Cancelar</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="alert alert-success" ng-hide="alertas">
+                            <h3><b><i class="fas fa-info-circle"></i> Evento creado con exito!!</b></h3>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        
+       
+        
+        
+
+
+    </div>
+</div>

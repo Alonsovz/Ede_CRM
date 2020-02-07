@@ -1,0 +1,415 @@
+<div class="row">
+    <div class="panel panel-default" >
+        <div class="panel-heading">
+            <div class="panel-title">
+                <h3><i class="fas fa-industry"></i> Mis Suministros </h3>
+            </div>
+        </div>
+        <div class="panel-body">
+            <table datatable="ng" dt-options="dtOptions" class="table table-bordered table-responsive table-hover animated fadeInRight m-t-xs" >
+                <thead>
+                <tr>
+                    <th class="text-center">NIS</th>
+                    <th class="text-center">Estado</th>
+                    <th class="text-center">Cliente</th>
+                    <th class="text-center">Direccion</th>
+                    <th class="text-center">Accion</th>
+
+                </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="suministro in suministros">
+                        <td class="text-center">{{suministro.num_suministro}}</td>
+                        <td class="text-center"><span class="alert alert-default"></span>{{suministro.estado}}</td>
+                        <td >{{suministro.nombrecliente}} {{suministro.apellidocliente}}</td>
+                        <td >{{suministro.anexo_direccion}}</td>
+                        <td class="text-center" ><button ng-click="detallesuministro()" class="btn btn-info btn-xs"><i class="fas fa-eye"></i></button></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="panel-footer">
+            <div class="alert alert-success" ng-hide="alertas">
+                <h3><b><i class="fas fa-info-circle"></i> Ficha creada con exito!!</b></h3>
+            </div>
+        </div>
+        <div class="panel-footer" ng-hide="detallesum">
+            <div class="row m-b-lg m-t-lg">
+                <div class="col-md-6">
+
+                    <div class="profile-image">
+                        <img src="img/factory.png" class="img-circle circle-border m-b-md" alt="profile">
+
+                    </div>
+                    <div class="profile-info">
+                        <div class="">
+                            <div>
+                                <h2 class="no-margins">
+                                    {{suministroDetalle.num_suministro}}
+                                    <button class="btn btn-xs btn-white" ng-click="nuevaatencion()" style="border: solid 1px black"><i class="fas fa-file-invoice"></i> Nueva atención</button>
+                                </h2>
+
+                                <br>
+                                <br>
+                                <h4>Estado: {{suministroDetalle.estado}}</h4>
+                                <h4>{{suministroDetalle.nombrecliente}} {{suministroDetalle.apellidocliente}}</h4>
+
+                                <small>{{suministroDetalle.anexo_direccion}}</small>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="ibox float-e-margins">
+                        <div class="ibox-title">
+                            <h5><i class="fas fa-file-archive"></i> Detalles</h5>
+                            <div class="ibox-tools">
+
+
+
+                            </div>
+                        </div>
+                        <div class="ibox-content">
+                            <form class="form-horizontal">
+                                <div class="row">
+
+                                    <div class="col-lg-5">
+                                        <div class="form-group">
+                                            <label for="">NIS:</label>
+                                            <input type="text" value="{{suministroDetalle.num_suministro}}" readonly="readonly" class="form-control">
+                                        </div>
+                                    </div>
+
+                                    <div class="col-lg-5" style="margin-left: 10px">
+                                        <div class="form-group">
+                                            <label for="">Codigo de cliente:</label>
+                                            <input type="text"value="{{suministroDetalle.CODIGO_CLIENTE}}" readonly="readonly" class="form-control">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+
+                                    <div class="col-lg-5" >
+                                        <div class="form-group">
+                                            <label for="">N° de contrato:</label>
+                                            <input type="text"value="{{suministroDetalle.numero_contrato}}" readonly="readonly" class="form-control">
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-5" style="margin-left: 10px">
+                                        <div class="form-group">
+                                            <label for="">Direccion:</label>
+                                            <textarea cols="5" rows="3"  readonly="readonly" class="form-control">{{suministroDetalle.anexo_direccion}}</textarea>
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                                <div class="row">
+
+                                    <div class="col-lg-5">
+                                        <div class="form-group">
+                                            <label for="">Tarifa:</label>
+                                            <input type="text" value="{{suministroDetalle.CODIGO_TARIFA}}" readonly="readonly" class="form-control">
+                                        </div>
+                                    </div>
+
+                                    <div class="col-lg-5" style="margin-left: 10px">
+                                        <div class="form-group">
+                                            <label for="">Capacidad Maxima:</label>
+                                            <input type="text"value="{{suministroDetalle.capacidad_maxima}}" readonly="readonly" class="form-control">
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+
+                                    <div class="col-lg-5">
+                                        <div class="form-group">
+                                            <label for="">Tipo tension:</label>
+                                            <input type="text" value="{{suministroDetalle.tipo_tension}}" readonly="readonly" class="form-control">
+                                        </div>
+                                    </div>
+
+                                    <div class="col-lg-5" style="margin-left: 10px">
+                                        <div class="form-group">
+                                            <label for="">Descuento:</label>
+                                            <input type="text"value="{{suministroDetalle.descuento}}" readonly="readonly" class="form-control">
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+
+                                    <div class="col-lg-5">
+                                        <div class="form-group">
+                                            <label for="">Voltaje:</label>
+                                            <input type="text" value="{{suministroDetalle.voltaje_energia}}" readonly="readonly" class="form-control">
+                                        </div>
+                                    </div>
+
+                                    <div class="col-lg-5" style="margin-left: 10px">
+                                        <div class="form-group">
+                                            <label for="">Tipo ubicacion:</label>
+                                            <input type="text"value="{{suministroDetalle.tipo_ubicacion}}" readonly="readonly" class="form-control">
+                                        </div>
+                                    </div>
+                                </div>
+
+
+
+                                <div class="row">
+
+                                    <div class="col-lg-5">
+                                        <div class="form-group">
+                                            <label for="">Fecha baja:</label>
+                                            <input type="text" value="{{suministroDetalle.fecha_baja | amDateFormat:'DD/MM/YYYY'}}" readonly="readonly" class="form-control">
+                                        </div>
+                                    </div>
+
+                                    <div class="col-lg-5" style="margin-left: 10px">
+                                        <div class="form-group">
+                                            <label for="">Fecha alta:</label>
+                                            <input  type="text" value="{{suministroDetalle.fecha_alta | amDateFormat:'DD/MM/YYYY'}}" readonly="readonly" class="form-control">
+
+                                        </div>
+                                    </div>
+                                </div>
+
+
+
+
+
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <!--IBOX PARA MOSTRAR LAS ATENCIONES QUE HA TENIDO UN SUMINISTRO HISTORICAMENTE-->
+            <div class="ibox">
+                <div class="ibox-title">
+                    <h5><i class="fas fa-flag"></i> Reclamos-Historico</h5>
+                </div>
+                <div class="ibox-content" style="overflow-y: hidden; overflow-x: scroll">
+                    <table style="font-size: 10px" datatable="ng" dt-options="dtOptions" class="table table-bordered table-responsive table-hover ">
+                        <thead>
+                            <tr>
+                                <th class="text-center">Codigo</th>
+                                <th class="text-center">NIS</th>
+                                <th class="text-center">Fecha</th>
+                                <th class="text-center">Usuario</th>
+                                <th class="text-center">Tipo</th>
+                                <th class="text-center">Motivo</th>
+                                <th class="text-center">Usuario Reporta</th>
+                                <th class="text-center">Reclamo</th>
+                                <th class="text-center">Telefono</th>
+                                <th class="text-center">Cierre</th>
+                                <th class="text-center">Resultado</th>
+                                <th class="text-center">Monto($)</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="atencion in atenciones">
+                                <td class="text-center">{{atencion.codigo_reclamo}}</td>
+                                <td class="text-center">{{atencion.num_suministro}}</td>
+                                <td class="text-center">{{atencion.fecha | amDateFormat:'DD/MM/YYYY H:mm'}}</td>
+                                <td class="text-center">{{atencion.codigo_usuario}}</td>
+                                <td class="text-center">{{atencion.tiporeclamo}}</td>
+                                <td class="">{{atencion.motivoreclamo}}</td>
+                                <td class="text-center">{{atencion.nombres_reporta}} {{atencion.apellidos_reporta}}</td>
+                                <td class="">{{atencion.comentario}}</td>
+                                <td class="text-center">{{atencion.telefono}}</td>
+                                <td class="text-center">{{atencion.fecha_cierre | amDateFormat:'DD/MM/YYYY H:mm'}}</td>
+                                <td class="">{{atencion.resultado}}</td>
+                                <td  class="text-center "><b>{{atencion.monto_reclamo}}</b></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+            </div>
+
+        </div>
+        <div class="panel-footer" ng-hide="frm_nuevaatencion">
+            <div class="row" >
+                <div class="col-lg-12">
+                    <div class="panel panel-primary">
+                        <div class="panel-heading">
+                            <div class="panel-title">
+                                <h3><i class="fas fa-bell"></i> Atenciones</h3>
+                            </div>
+                        </div>
+
+                        <div class="panel-body">
+
+                        </div>
+
+                        <div class="panel-footer">
+                            <h1><i class="fas fa-file-invoice"></i> Nueva ficha de atención</h1>
+                            <br><br>
+                            <form action="guardarfichaatencion" method="post"  class="form-horizontal" enctype="multipart/form-data">
+
+                                <div class="row " style="height: 250px; margin-bottom: 25px ">
+
+                                    <div class="col-lg-12" style="border:dashed 1px black; background-color: lightyellow">
+                                        <div  class="col-lg-8 " style="margin-left: 20px;  padding-left: 25px; " >
+                                            <div class="form-group">
+                                                <h2>Adjuntar Archivos</h2>
+                                                <input id="file" name="file" type="file"  class="form-control-file"  ><br>
+                                                <textarea ng-model="descripcionadjunto" class="form-control" name="" id="" cols="5" rows="5" placeholder="Digite la descripción del archivo"></textarea><br>
+
+                                                <br><select name="" id="" ng-model="tipoarchivo" class="form-control">
+                                                    <option value="">Seleccione un tipo de archivo...</option>
+                                                    <option ng-repeat="t in tiposarchivos.availableOptions" value="{{t.id}}">{{t.nombre}}</option>
+                                                </select>
+                                                <br><button type="button" ng-click="cargaradjuntoatenciones()" class="btn  btn-white " style="margin-left: 2px;border: solid 1px black;"><i class="fas fa-download"></i> Cargar archivo</button>
+                                            </div>
+                                        </div>
+                                        <div  class="col-lg-6" style="margin-left: 18px; ">
+                                            <table class="table table-bordered table-striped">
+                                                <thead>
+                                                <tr>
+                                                    <th style="background: darkslategrey; color:white;" class="text-center"><i class="far fa-file"></i> Archivos</th>
+                                                </tr>
+                                                </thead>
+                                                <tbody>
+                                                <tr ng-repeat="archivo in archivos">
+
+                                                    <td>{{archivo}}</td>
+                                                </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <br><br>
+                                <div class="row" style="margin-top: 50px">
+                                    <div class="col-lg-4" style="margin-left: 10px">
+                                        <div class="form-group">
+                                            <label for="">Suministro:</label>
+                                            <input type="text" class="form-control" readonly="readonly" name="suministro" ng-model="formatencion.suministro">
+                                        </div>
+                                    </div>
+
+                                    <div class="col-lg-4" style="margin-left: 25px">
+                                        <div class="form-group">
+                                            <label for="">Cliente:</label>
+                                            <input type="text" class="form-control" readonly="readonly" name="cliente" ng-model="formatencion.cliente">
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-lg-4" style="margin-left: 10px">
+                                        <div class="form-group">
+                                            <label for="">Nombre de contacto:</label>
+                                            <input type="text" class="form-control" name="contacto" placeholder="Digite el nombre del usuario para la atención"  ng-model="formatencion.contacto">
+                                        </div>
+                                    </div>
+
+                                    <div class="col-lg-4">
+                                        <div class="form-group" style="margin-left: 10px">
+                                            <label for="">Telefono de usuario:</label>
+                                            <input type="text" ng-model="formatencion.telefono" name="telefono" class="form-control">
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-lg-4" style="margin-left: 10px">
+                                        <div class="form-group">
+                                            <label for="">Tipo de atención:</label>
+                                            <select name="tipoatencion"  ng-options="tipo as tipo.nombre for tipo in tipoatenciones.availableOptions" class="form-control" ng-model="formatencion.tipoatenciones" ng-change="evt_tipoatencion()">
+                                            </select>
+                                        </div>
+                                    </div>
+
+
+                                    <div class="col-lg-4">
+                                        <div class="form-group" style="margin-left: 10px">
+                                            <label for="">Motivo de atención:</label>
+                                            <select name="motivoatencion" class="form-control" ng-model="formatencion.motivoatenciones">
+                                                <option ng-repeat="motivo in motivoatenciones.availableOptions" value="{{motivo.id}}">{{motivo.nombre}}</option>
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-lg-4" style="margin-left: 10px" ng-hide="correo">
+                                        <div class="form-group">
+                                            <label for="">Correo:</label>
+                                            <input name="correo" type="text" class="form-control" placeholder=""  ng-model="formatencion.correo">
+                                        </div>
+                                    </div>
+
+
+
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-lg-4" style="margin-left: 10px" ng-hide="fax">
+                                        <div class="form-group">
+                                            <label for="">FAX:</label>
+                                            <input name="fax" type="text" class="form-control" placeholder=""  ng-model="formatencion.fax">
+                                        </div>
+                                    </div>
+
+
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-lg-4" style="margin-left: 10px" ng-hide="whatsapp">
+                                        <div class="form-group">
+                                            <label for="">Whatsapp:</label>
+                                            <input name="whatsapp" type="text" class="form-control" placeholder="Numero de whatsapp"  ng-model="formatencion.whatsapp">
+                                        </div>
+                                    </div>
+
+
+                                </div>
+
+
+                                <div class="row">
+                                    <div class="col-lg-8" style="margin-left: 10px">
+                                        <div class="form-group">
+                                            <label for="">Descripcion de atencion:</label>
+                                            <textarea nam ng-model="formatencion.descripcion" class="form-control" name="descripcion" id="" cols="8" rows="5"></textarea>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+
+
+
+
+                                <div class="row">
+                                    <div class="col-lg-8" style="margin-left: 10px">
+                                        <div class="form-group">
+                                            <button type="button" ng-click="guardarFichaAtencion()" class="btn btn-md btn-primary pull-right" style="margin-left: 5px"><i class="fas fa-save"></i> Guardar ficha</button>
+                                            <button class="btn btn-md btn-white pull-right" ng-click="cancelarnuevaatencion()" style="border:solid 1px black"><i class="fas fa-times"></i> Cancelar</button>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="alert alert-success" ng-hide="alertaatencion">
+                                        <h3><b><i class="fas fa-info-circle"></i> Ficha de Atención creada con exito!!</b></h3>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,37 @@
+<div class="ibox">
+    <div class="ibox-heading">
+        <div class="ibox-title">
+            <h5 class=""><i class="fas fa-file"></i> Ordenes de trabajo (Area Tecnica)</h5>
+        </div>
+    </div>
+    <div class="ibox-content">
+        <table style="font-size: small" datatable="ng" dt-options="dtOptions" class="table table-bordered table-responsive table-hover">
+            <thead>
+            <tr>
+                <th style="border: solid 1px whitesmoke; background: black; color:white" class="text-center">Codigo</th>
+                <th style="border: solid 1px whitesmoke; background: black; color:white" >Solicitud</th>
+                <th style="border: solid 1px whitesmoke; background: black; color:white" class="text-center">Fecha de solicitud (Solicitante)</th>
+                <th style="border: solid 1px whitesmoke; background: black; color:white" class="text-center">Fecha de resolucion (Compromiso con el cliente)</th>
+                <th style="border: solid 1px whitesmoke; background: black; color:white" class="text-center">Direccion</th>
+                <th style="border: solid 1px whitesmoke; background: black; color:white" class="text-center">Agencia</th>
+                <th style="border: solid 1px whitesmoke; background: black; color:white" class="text-center">Solicitante</th>
+                <th style="border: solid 1px whitesmoke; background: black; color:white" class="text-center">Autorizado</th>
+            </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="orden in ordenesasignados">
+                    <td class="text-center">{{orden.id}}</td>
+                    <td >{{orden.solicitud}}</td>
+                    <td class="text-center">{{orden.fecha_solicitud | amDateFormat:'DD/MM/YYYY H:mm'}}</td>
+                    <td class="text-center">{{orden.fecha_resolucion | amDateFormat:'DD/MM/YYYY H:mm'}}</td>
+                    <td>{{orden.direccion}}</td>
+                    <td>{{orden.zona_agencia}}</td>
+                    <td>{{orden.nombresolicitante}} {{orden.apellidosolicitante}}</td>
+                    <td style="background-color: lightgreen" class="text-center" ng-if="orden.autorizado_1==true && orden.autorizado_2==true"><a target="_blank" ng-href="imprimirorden?orden={{orden.id}}" style="border: solid 1px black" class="btn btn-white btn-xs"><i class="fas fa-print"></i> Imprimir</a></td>
+                    <td  style="background-color: orange" class="text-center" ng-if="orden.autorizado_1==null"><b>NO</b></td>
+                </tr>
+            </tbody>
+        </table>
+
+    </div>
+</div>

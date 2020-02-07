@@ -1,0 +1,587 @@
+<div class="row" ng-controller="ShowEventosController">
+    <div class="panel panel-default" style="border:solid 1px lightgrey">
+        <div class="panel-heading" style="height: 100px">
+            <div class="panel-title">
+                <ul class="nav nav-tabs">
+
+                    <li class="active">
+                        <a data-toggle="tab" href=".tabMyE">
+                            <button id=""> 
+                            <i class="fa fa-user"></i> Mis Eventos
+                            </button>
+                        </a>
+                    </li>
+                    <li class="">
+                        <a data-toggle="tab" href=".tabOthersE">
+                            <button id=""> 
+                                <i class="fa fa-users"></i> Eventos de otros usuarios a mis clientes
+                            </button>
+                        </a>
+                    </li>
+              </ul>
+                
+                
+            </div>
+        </div>
+
+
+
+        <div class="tab-content">
+            <div class="tab-pane active tabMyE">
+                <div class="col-lg-8" style="background-color: #910439; color: white;
+                font-size: 18px;">
+                    <i class="fa fa-user" ></i> <b >Mis Eventos realizados a mis clientes</b>
+                </div><br><br><br><br>
+                <table datatable="ng" dt-options="dtOptions" class="table table-hover table-bordered">
+                    <thead>
+                        <tr>
+                            <th class="text-center">ID</th>
+                            <th class="text-center">Cliente</th>
+                            <th class="text-center">Fecha requerida (interna)</th>
+                            <th class="text-center">Fecha creacion</th>
+                            <th class="text-center">Descripcion</th>
+                            <th class="text-center">Fecha comprometida (con cliente/SH)</th>
+                            <th class="text-center">Estado</th>
+                            <th class="text-center"></th>
+                            <th class="text-center"></th>
+                            <th class="text-center"></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="evento in eventos">
+                            <td>{{evento.id}}</td>
+                            <td>{{evento.cliente}}</td>
+                            <td class="text-center">{{evento.fecha_compromiso | amDateFormat:'DD/MM/YYYY'}}</td>
+                            <td class="text-center">{{evento.fecha_creacion | amDateFormat:'DD/MM/YYYY'}}</td>
+                            <td>
+                                <div style="width:100%; max-height:100px; overflow:auto">
+                                {{evento.descripcion}}
+                                </div>
+                            </td>
+                            <td class="text-center">{{evento.fecha_resolucion | amDateFormat:'DD/MM/YYYY'}}</td>
+                            <td class="text-center">{{evento.estado}}</td>
+                            <td class="text-center"><button ng-click="mostrarformticket(evento)" class="btn btn-xs btn-warning" style="border: solid 1px black; color:black"><i class="fas fa-ticket-alt"></i> Nuevo ticket</button></td>
+                            <td class="text-center"><button ng-click="mostrardetalles(evento)" class="btn btn-xs btn-info" style="border: solid 1px black; color:black"><i class="fas fa-eye"></i> Detalles</button></td>
+                            <td  class="text-center"><button ng-if="evento.estado=='Proceso de resolucion'" ng-click="verformresolucion(evento)" class="btn btn-xs btn-success" style="border: solid 1px black; color:white"><i class="fas fa-eye"></i> Resolución</button></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            
+
+        <div class="tab-pane tabOthersE">
+                <div class="col-lg-8" style="background-color: #7D8A01; color: white;
+                font-size: 18px;">
+                    <i class="fa fa-user" ></i> <b >Eventos realizados a mis clientes por otros usuarios</b>
+                </div><br><br><br><br>
+                <table datatable="ng" dt-options="dtOptions" class="table table-hover table-bordered">
+                    <thead>
+                        <tr>
+                            <th class="text-center">ID</th>
+                            <th class="text-center">NIS</th>
+                            <th class="text-center">Cliente</th>
+                            <th class="text-center">Fecha requerida (interna)</th>
+                            <th class="text-center">Fecha creacion</th>
+                            <th class="text-center">Descripcion</th>
+                            <th class="text-center">Fecha comprometida (con cliente/SH)</th>
+                            <th class="text-center">Usuario</th>
+                            <th class="text-center">Estado</th>
+                            <th class="text-center"></th>
+                            <th class="text-center"></th>
+                            <th class="text-center"></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="evento in eventosCl">
+                            <td>{{evento.id}}</td>
+                            <td>{{evento.num_suministro}}</td>
+                            <td>{{evento.cliente}}</td>
+                            <td class="text-center">{{evento.fecha_compromiso | amDateFormat:'DD/MM/YYYY'}}</td>
+                            <td class="text-center">{{evento.fecha_creacion | amDateFormat:'DD/MM/YYYY'}}</td>
+                            <td>
+                                <div style="width:100%; max-height:100px; overflow:auto">
+                                {{evento.descripcion}}
+                                </div>
+                            </td>
+                            <td class="text-center">{{evento.fecha_resolucion | amDateFormat:'DD/MM/YYYY'}}</td>
+                            <td class="text-center">
+                                <div  style="background-color:#171287; color:white;
+                                font-weight:bold"> {{evento.usuario_creacion}} </div>
+                            </td>
+                            <td class="text-center">{{evento.estado}}</td>
+                            
+                            <td class="text-center"><button ng-click="mostrarformticket(evento)" class="btn btn-xs btn-warning" style="border: solid 1px black; color:black"><i class="fas fa-ticket-alt"></i> Nuevo ticket</button></td>
+                            <td class="text-center"><button ng-click="mostrardetalles(evento)" class="btn btn-xs btn-info" style="border: solid 1px black; color:black"><i class="fas fa-eye"></i> Detalles</button></td>
+                            <td  class="text-center"><button ng-if="evento.estado=='Proceso de resolucion'" ng-click="verformresolucion(evento)" class="btn btn-xs btn-success" style="border: solid 1px black; color:white"><i class="fas fa-eye"></i> Resolución</button></td>
+                        </tr>
+                    </tbody>
+                </table>
+            
+        </div>
+       
+
+        <div class="panel-footer" ng-hide="alertaresolucion">
+            <div class="row">
+                <div class="alert alert-success" ng-hide="alertas">
+                    <h3><b><i class="fas fa-info-circle"></i> Resolucion establecida con exito!</b></h3>
+                </div>
+            </div>
+        </div>
+        <div class="panel-footer" ng-hide="formularioticket" style="border: solid 1px grey">
+            <h2><i class="fas fa-ticket-alt"></i> Nuevo Ticket
+
+                <button  class="btn btn-white btn-xs" ng-click="verformularioordentrabajo()" style="border:solid 1px black"><i class="fas fa-file"></i> Nueva Orden de trabajo tecnica</button>
+
+            </h2><br><br>
+
+            <form action="" class="form-horizontal">
+
+                <div class="row">
+                    <div class="col-lg-7">
+                        <div class="row">
+                            <div class="col-lg-4" style="margin-left: 10px">
+                                <div class="form-group">
+                                    <label for="">ID de evento:</label>
+                                    <input type="text" class="form-control" readonly="readonly"  ng-model="formticket.evento">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-4" style="margin-left: 10px">
+                                <div class="form-group">
+                                    <label for="">Titulo:</label>
+                                    <input type="text" class="form-control"  ng-model="formticket.titulo">
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <div class="row">
+                            <div class="col-lg-4" style="margin-left: 10px">
+                                <div class="form-group">
+                                    <label for="">Asignar responsable del ticket:</label>
+                                    <select class="form-control" name="" ng-model="formticket.usuario" >
+                                        <option ng-repeat="u in usuario.availableOptions" value="{{u.id}}">{{u.nombre}} {{u.apellido}}</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <div class="row">
+                            <div class="col-lg-4" style="margin-left: 10px">
+                                <div class="form-group">
+                                    <label for="">Notificar a: (Se enviara una copia de este ticket)</label>
+                                    <select class="form-control" name="" ng-model="formticket.usuarioanotificar" >
+                                        <option ng-repeat="u in usuario.availableOptions" value="{{u.id}}">{{u.nombre}} {{u.apellido}}</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+
+                            <div class="col-lg-4" style="margin-left: 10px">
+                                <div class="form-group">
+                                    <label for="">Fecha y hora de resolución: (Resolución interna via COMANDA)</label>
+                                    <input  type="text" ng-model="formticket.fechacompromiso | amDateFormat:'DD/MM/YYYY h:mm'" class="form-control">
+                                    <datetimepicker   style="margin-left: 5px" data-ng-model="formticket.fechacompromiso" ></datetimepicker>
+                                </div>
+                            </div>
+                        </div>
+
+
+
+                        <div class="row">
+                            <div class="col-lg-10" style="margin-left: 10px">
+                                <div class="form-group">
+                                    <label for="">Descripcion:</label>
+                                    <textarea ng-model="formticket.descripcion " class="form-control" name="" id="" cols="8" rows="5"></textarea>
+                                </div>
+                            </div>
+                        </div>
+
+
+                    </div>
+                    <div ng-hide="formularioordentrabajo" class="col-lg-5" style="background-color: lightyellow; border: dashed 1px black;">
+                        <h2><i class="fas fa-file"></i> Nueva Orden de trabajo tecnica
+
+                        </h2><br><br>
+                        <form action="" class="form-horizontal">
+                            <div class="row">
+                                <div class="col-lg-10" style="margin-left: 10px">
+                                    <div class="form-group">
+                                        <label for="">Evento:</label>
+                                        <input class="form-control" type="text" readonly="readonly" ng-model="orden.evento">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-10" style="margin-left: 10px">
+                                    <div class="form-group">
+                                        <label for="">Trabajo solicitado:</label>
+                                        <textarea class="form-control" name="" ng-model="orden.trabajo" cols="25" rows="4"></textarea>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-lg-5" style="margin-left: 10px">
+                                    <div class="form-group">
+                                        <label for="">Fecha y hora de compromiso: (con el cliente/SH)</label>
+                                        <input  type="text" ng-model="orden.fechacompromiso | amDateFormat:'DD/MM/YYYY h:mm'" class="form-control">
+                                        <datetimepicker   style="margin-left: 5px" data-ng-model="orden.fechacompromiso" ></datetimepicker>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-lg-6" style="margin-left: 10px">
+                                    <div class="form-group">
+                                        <label for="">Dirección donde se desarrollarán los trabajos:</label>
+                                        <textarea name="" ng-model="orden.direccion" class="form-control" id="" cols="30" rows="4"></textarea>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-lg-6" style="margin-left: 10px">
+                                    <div class="form-group">
+                                        <label for="">Persona contacto del cliente/SH:</label>
+                                        <input type="text" class="form-control" ng-model="orden.personacontacto">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-lg-6" style="margin-left: 10px">
+                                    <div class="form-group">
+                                        <label for="">Telefono contacto:</label>
+                                        <input type="text" class="form-control" ng-model="orden.telefonocontacto">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-lg-6" style="margin-left: 10px">
+                                    <div class="form-group">
+                                        <label for="">Unidad que solicita:</label>
+                                        <select name="" class="form-control" id="">
+                                            <option value="">Seleccione una agencia..</option>
+                                            <option value="Ciudad Real">Ciudad Real</option>
+                                            <option value="Versailles">Versailles</option>
+                                            <option value="San Miguel">San Miguel</option>
+                                            <option value="San Gabriel">San Gabriel</option>
+                                            <option value="Corporativa">Corporativa</option>
+                                            <option value="EDESAL Services">EDESAL Services</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-lg-4" style="margin-left: 10px">
+                                    <div class="form-group">
+                                        <label for="">Gerencia a la que se solicita:</label>
+                                        <input type="text" class="form-control" ng-model="orden.gerencia">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-lg-5" style="margin-left: 10px">
+                                    <div class="form-group">
+                                        <label for="">Adjudicado a contratista: (Si aplica)</label>
+                                        <input type="text" class="form-control" ng-model="orden.contratista">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-lg-10" style="margin-left: 10px">
+                                    <div class="form-group">
+                                        <label for="">Observaciones:</label>
+                                        <textarea ng-model="orden.observaciones" name="" id="" cols="50" rows="4" class="form-control"></textarea>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <div class="row" style="margin-top: 10px">
+                    <div class="col-lg-12" >
+                        <div class="form-group">
+                            <button  class="btn btn-white col-lg-12" style="border:solid 1px black" type="button" ng-click="guardarticket()"><i class="fas fa-save"></i> Guardar solo ticket</button>
+                        </div>
+                    </div>
+                    <br><br>
+                    <div class="col-lg-12" >
+                        <div class="form-group">
+                            <button  class="btn btn-primary col-lg-12" style="border:solid 1px black" type="button" ng-click="guardarticketorden()"><i class="fas fa-save"></i> Guardar ticket y adjuntar orden</button>
+                        </div>
+                    </div>
+                </div>
+
+
+            </form>
+        </div>
+
+        <div class="panel-footer">
+            <div class="row">
+                <div class="alert alert-success" ng-hide="alertaticket">
+                    <h3><b><i class="fas fa-info-circle"></i> Ticket creado con orden adjunta!</b></h3>
+                </div>
+                <div class="alert alert-danger" ng-hide="alertaerrorticket">
+                    <h3><b><i class="fas fa-info-circle"></i> Error al crear ticket con orden adjunta!</b></h3>
+                </div>
+            </div>
+        </div>
+
+        <!--detalle de evento-->
+        <div class="panel-footer" ng-hide="detallesevento" style="border:solid 1px grey">
+            <div class="row">
+                <div class="clients-list">
+                    <ul class="nav nav-tabs">
+
+                        <li class="active"><a style="color:black" data-toggle="tab" href=".tab1"><i class="fas fa-calendar-alt"></i> Detalles</a></li>
+                        <li class=""><a style="color:black" data-toggle="tab" href=".tab2"><i class="fas fa-ticket-alt"></i> Tickets asociados</a></li>
+                        <li class=""><a style="color:black" data-toggle="tab" href=".tab3"><i class="fas fa-file"></i> Adjuntos</a></li>
+                    </ul>
+                    <div class="tab-content">
+                        <div id="tab-1" class="tab-pane active tab1" style="padding-left: 20px">
+
+                            <br><br>
+                            <form action="" class="form-horizontal">
+                                <div class="row">
+                                    <div class="col-lg-4" style="margin-left: 10px">
+                                        <div class="form-group">
+                                            <label for="">Suministro:</label>
+                                            <input type="text" class="form-control" readonly="readonly" ng-model="formevento.num_suministro">
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-lg-4" style="margin-left: 10px">
+                                        <div class="form-group">
+                                            <label for="">Cliente:</label>
+                                            <input type="text" readonly="readonly" class="form-control" placeholder=""  ng-model="formevento.cliente">
+                                        </div>
+                                    </div>
+
+
+                                </div>
+
+
+
+                                <div class="row">
+
+                                    <div class="col-lg-4" style="margin-left: 10px">
+                                        <div class="form-group">
+                                            <label for="">Fecha y hora de compromiso:</label>
+                                            <input  type="text" readonly="readonly" ng-model="formevento.fecha_compromiso | amDateFormat:'DD/MM/YYYY h:mm'" class="form-control">
+
+                                        </div>
+                                    </div>
+
+
+
+                                    <div class="col-lg-4" style="margin-left: 105px">
+                                        <div class="form-group" >
+                                            <label for="">Fecha y hora de resolución:</label>
+                                            <input type="text" readonly="readonly" ng-model="formevento.fecha_resolucion | amDateFormat:'DD/MM/YYYY h:mm'" class="form-control">
+
+                                        </div>
+                                    </div>
+                                </div>
+
+
+
+
+                                <div class="row">
+                                    <div class="col-lg-8" style="margin-left: 10px">
+                                        <div class="form-group">
+                                            <label for="">Descripcion:</label>
+                                            <textarea readonly="readonly" ng-model="formevento.descripcion " class="form-control" name="" id="" cols="8" rows="5"></textarea>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row" ng-if="formevento.estado==2">
+                                    <div class="col-lg-7" style="margin-left:10px ">
+                                        <div class="form-group">
+                                            <label for="">Resolución establecida</label>
+                                            <textarea name="" ng-model="formevento.resolucion" class="form-control"  cols="30" rows="4" readonly="readonly"></textarea>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+
+
+
+
+
+                            </form>
+                        </div>
+                        <div id="tab-2" class="tab-pane tab2" style=" padding-top: 10px">
+                            <div class="col-lg-12">
+                                <table class="table table-bordered  table-hover">
+                                    <thead >
+                                    <tr style="">
+                                        <th class="text-center" style="border:solid 1px black; background-color: black; color: white;">ID de ticket</th>
+                                        <th class="text-center" style="border:solid 1px black; background-color: black; color: white;">Descripcion</th>
+                                        <th class="text-center" style="border:solid 1px black; background-color: black; color: white;">Usuario asignado</th>
+                                        <th class="text-center" style="border:solid 1px black; background-color: black; color: white;"><i class="fas fa-calendar-alt"></i> Solicitud</th>
+                                        <th class="text-center" style="border:solid 1px black; background-color: black; color: white;"><i class="fas fa-calendar-alt"></i> Solución aproximada</th>
+                                        <th class="text-center" style="border:solid 1px black; background-color: black; color: white;">Estado</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr ng-repeat="ticket in tickets">
+                                        <td class="text-center" style="border:solid 1px black">{{ticket.id}}</td>
+                                        <td style="border:solid 1px black">{{ticket.descripcion}}</td>
+                                        <td class="text-center" style="border:solid 1px black">{{ticket.nombreasignado}} {{ticket.apellidoasignado}}</td>
+                                        <td class="text-center" style="border:solid 1px black">{{ticket.fechasolicitud | amDateFormat:'DD/MM/YYYY H:mm'}}</td>
+                                        <td class="text-center" style="border:solid 1px black">{{ticket.fechasolaprox | amDateFormat:'DD/MM/YYYY H:mm'}}</td>
+                                        <td class="text-center" style="border:solid 1px black">{{ticket.estado}}</td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <div id="tab-3" class="tab-pane tab3">
+                            <div class="col-lg-12" style="margin-top: 20px">
+                                <table class="table table-bordered  table-hover">
+                                    <thead >
+                                    <tr style="">
+                                        <th class="text-center" style="border:solid 1px black; background-color: black; color: white;">Descripcion</th>
+                                        <th class="text-center" style="border:solid 1px black; background-color: black; color: white;">Tipo de archivo</th>
+                                        <th class="text-center" style="border:solid 1px black; background-color: black; color: white;">Archivo</th>
+                                        <th class="text-center" style="border:solid 1px black; background-color: black; color: white;"></th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr ng-repeat="adjunto in adjuntos">
+                                            <td style="border:solid 1px black">{{adjunto.descripcion}}</td>
+                                            <td style="border:solid 1px black" class="text-center">{{adjunto.tipo}}</td>
+                                            <td style="border:solid 1px black" class="text-center">{{adjunto.adjunto}}</td>
+                                            <td style="border:solid 1px black" class="text-center"><a type="application/pdf" ng-href="files/{{adjunto.adjunto}}" target="_blank" class="btn btn-xs btn-white" style="border:solid black 1px"><i class="fas fa-eye"></i> Visualizar</a></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+
+                        </div>
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
+
+        <div class="panel-footer" ng-hide="formnuevoevento">
+            <h1><i class="fas fa-calendar-alt"></i> Nuevo Evento</h1>
+            <br><br>
+            <form action="" class="form-horizontal">
+                <div class="row">
+                    <div class="col-lg-4" style="margin-left: 10px">
+                        <div class="form-group">
+                            <label for="">Suministro:</label>
+                            <input type="text" class="form-control" readonly="readonly" ng-model="formevento.suministro">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-lg-4" style="margin-left: 10px">
+                        <div class="form-group">
+                            <label for="">Cliente:</label>
+                            <input type="text" class="form-control" placeholder=""  ng-model="formevento.nombrecliente">
+                        </div>
+                    </div>
+
+
+                </div>
+
+
+
+
+                <div class="row">
+
+                    <div class="col-lg-4" style="margin-left: 10px">
+                        <div class="form-group">
+                            <label for="">Fecha y hora de compromiso:</label>
+                            <input  type="text" ng-model="formevento.fechacompromiso | amDateFormat:'DD/MM/YYYY h:mm'" class="form-control">
+                            <datetimepicker   style="margin-left: 5px" data-ng-model="formevento.fechacompromiso" ></datetimepicker>
+                        </div>
+                    </div>
+
+
+
+                    <div class="col-lg-4" style="margin-left: 105px">
+                        <div class="form-group" >
+                            <label for="">Fecha y hora de resolución:</label>
+                            <input type="text" ng-model="formevento.fecharesolucion | amDateFormat:'DD/MM/YYYY h:mm'" class="form-control">
+                            <datetimepicker style="margin-left: 5px" data-ng-model="formevento.fecharesolucion"></datetimepicker>
+                        </div>
+                    </div>
+                </div>
+
+
+
+
+                <div class="row">
+                    <div class="col-lg-8" style="margin-left: 10px">
+                        <div class="form-group">
+                            <label for="">Descripcion:</label>
+                            <textarea ng-model="formevento.descripcion " class="form-control" name="" id="" cols="8" rows="5"></textarea>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-lg-8" style="margin-left: 10px">
+                        <div class="form-group">
+                            <button ng-click="guardarEvento()" class="btn btn-md btn-primary pull-right" style="margin-left: 5px"><i class="fas fa-save"></i> Guardar Evento</button>
+                            <button class="btn btn-md btn-white pull-right" ng-click="cancelarEvento()" style="border:solid 1px black"><i class="fas fa-times"></i> Cancelar</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="alert alert-success" ng-hide="alertas">
+                    <div class="alert alert-success" ng-hide="alertas">
+                        <h3><b><i class="fas fa-info-circle"></i> Evento creado con exito!!</b></h3>
+                    </div>
+                </div>
+                </div>
+
+            </form>
+
+        </div>
+
+        <!--formulario para la resolucion de evento-->
+        <div class="panel-footer" ng-hide="formularioresolucion">
+            <form action="" class="form-horizontal">
+                <div class="row">
+                    <div class="col-lg-10" style="margin-left: 10px">
+                        <div class="form-group">
+                            <label for="">Resolución:</label>
+                            <textarea placeholder="digite una breve descripcion de la resolucion de este evento" name="" class="form-control" cols="30" rows="4" ng-model="modelresolucion.resolucion"></textarea>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-4" style="margin-left: 10px">
+                        <div class="form-group">
+                            <button type="button" ng-click="guardarresolucion()" class="btn btn-primary"><i class="fas fa-save" ></i> Guardar resolución</button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+
+
+    </div>
+</div>

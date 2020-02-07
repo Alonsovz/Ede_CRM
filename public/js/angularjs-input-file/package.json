@@ -1,0 +1,90 @@
+{
+  "_from": "angularjs-input-file",
+  "_id": "angularjs-input-file@4.2.1",
+  "_inBundle": false,
+  "_integrity": "sha512-LiBIATQAACx+QUXNXomHe++N9ES771WBWmDJI/vldH9V0jN6GdDGXcV1w8waofW+xbKHIUmmUKhNPgKGVw0nog==",
+  "_location": "/angularjs-input-file",
+  "_phantomChildren": {},
+  "_requested": {
+    "type": "tag",
+    "registry": true,
+    "raw": "angularjs-input-file",
+    "name": "angularjs-input-file",
+    "escapedName": "angularjs-input-file",
+    "rawSpec": "",
+    "saveSpec": null,
+    "fetchSpec": "latest"
+  },
+  "_requiredBy": [
+    "#USER",
+    "/"
+  ],
+  "_resolved": "https://registry.npmjs.org/angularjs-input-file/-/angularjs-input-file-4.2.1.tgz",
+  "_shasum": "55da78b3a5af730a47dc6144c8068adbf675aa3f",
+  "_spec": "angularjs-input-file",
+  "_where": "C:\\xampp\\htdocs\\crm_edesal",
+  "author": {
+    "name": "Arthur Agombart",
+    "email": "arthur.agombart@gmail.com"
+  },
+  "bugs": {
+    "url": "https://github.com/heyprof/angularjs-input-file/issues"
+  },
+  "bundleDependencies": false,
+  "dependencies": {
+    "angular": "^1.6.9"
+  },
+  "deprecated": false,
+  "description": "AngularJS Component for file selector",
+  "devDependencies": {
+    "@babel/core": "^7.0.0-beta.44",
+    "@babel/preset-env": "^7.0.0-beta.44",
+    "angular-mocks": "^1.6.9",
+    "babel-eslint": "^8.2.2",
+    "babel-loader": "^8.0.0-beta.2",
+    "babel-plugin-angularjs-annotate": "^0.8.2",
+    "eslint": "^4.19.1",
+    "eslint-config-angular": "^0.5.0",
+    "eslint-config-xo": "^0.20.1",
+    "eslint-config-xo-space": "^0.18.0",
+    "eslint-loader": "^2.0.0",
+    "eslint-plugin-angular": "^3.3.0",
+    "html-loader": "^0.5.5",
+    "html-webpack-plugin": "^3.1.0",
+    "istanbul-instrumenter-loader": "^3.0.1",
+    "jasmine-core": "^3.1.0",
+    "karma": "^2.0.0",
+    "karma-babel-preprocessor": "^8.0.0-beta.0",
+    "karma-coverage": "^1.1.1",
+    "karma-jasmine": "^1.1.1",
+    "karma-phantomjs-launcher": "^1.0.4",
+    "karma-sourcemap-loader": "^0.3.7",
+    "karma-spec-reporter": "0.0.32",
+    "karma-webpack": "^3.0.0",
+    "phantomjs-prebuilt": "^2.1.16",
+    "webpack": "^4.4.1",
+    "webpack-cli": "^2.0.13",
+    "webpack-serve": "^0.3.1"
+  },
+  "homepage": "https://github.com/heyprof/angularjs-input-file#readme",
+  "keywords": [
+    "angularjs",
+    "component",
+    "file",
+    "file-selector"
+  ],
+  "license": "MIT",
+  "main": "./dist/angularjs-input-file.js",
+  "name": "angularjs-input-file",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/heyprof/angularjs-input-file.git"
+  },
+  "scripts": {
+    "build": "webpack",
+    "start": "webpack-serve --config webpack.config.js",
+    "test": "karma start",
+    "test-watch": "karma start --auto-watch --no-single-run"
+  },
+  "version": "4.2.1"
+}

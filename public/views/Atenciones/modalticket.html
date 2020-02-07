@@ -1,0 +1,57 @@
+<div class="modal-header">
+    <h2 class="modal-title" id="modal-title"><i class="fas fa-ticket-alt"></i> Nuevo ticket</h2>
+</div>
+<div class="modal-body" id="modal-body" >
+    <form action="" class="form-horizontal">
+        <div class="row">
+            <div class="col-lg-4" style="margin-left: 10px">
+                <div class="form-group">
+                    <label for="">Titulo:</label>
+                    <input type="text" class="form-control"  ng-model="formticket.titulo">
+                </div>
+            </div>
+
+
+        </div>
+
+        <div class="row">
+            <div class="col-lg-4" style="margin-left: 10px">
+                <div class="form-group">
+                    <label for="">Asignar usuario:</label>
+                    <select class="form-control" name="" ng-model="formticket.usuario" >
+                        <option ng-repeat="u in usuario.availableOptions" value="{{u.id}}">{{u.nombre}} {{u.apellido}}</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+
+            <div class="col-lg-5" style="margin-left: 10px">
+                <div class="form-group">
+                    <label for="">Fecha y hora de resolución:</label>
+                    <input  type="text" ng-model="formticket.fechacompromiso | amDateFormat:'DD/MM/YYYY h:mm'" class="form-control">
+                    <datetimepicker   style="margin-left: 5px" data-ng-model="formticket.fechacompromiso" ></datetimepicker>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-lg-10" style="margin-left: 10px">
+                <div class="form-group">
+                    <label for="">Descripcion:</label>
+                    <textarea ng-model="formticket.descripcion " class="form-control" name="" id="" cols="8" rows="5"></textarea>
+                </div>
+            </div>
+        </div>
+
+
+
+
+
+    </form>
+</div>
+<div class="modal-footer">
+
+</div>
+

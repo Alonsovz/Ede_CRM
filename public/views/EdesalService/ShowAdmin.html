@@ -1,0 +1,178 @@
+<div class="ibox">
+    <div class="ibox-heading">
+        <div class="ibox-title">
+            <h5 class=""><i class="fas fa-file"></i> Ordenes de trabajo (Area Tecnica)</h5>
+        </div>
+    </div>
+    <div class="ibox-content">
+        <table style="font-size: small" datatable="ng" dt-options="dtOptions" class="table table-bordered table-responsive table-hover">
+            <thead>
+            <tr>
+                <th style="border: solid 1px whitesmoke; background: black; color:white" class="text-center">Codigo</th>
+                <th style="border: solid 1px whitesmoke; background: black; color:white" >Solicitud</th>
+                <th style="border: solid 1px whitesmoke; background: black; color:white" class="text-center">Fecha de solicitud (Solicitante)</th>
+                <th style="border: solid 1px whitesmoke; background: black; color:white" class="text-center">Fecha de resolucion (Compromiso con el cliente)</th>
+                <th style="border: solid 1px whitesmoke; background: black; color:white" class="text-center">Direccion</th>
+                <th style="border: solid 1px whitesmoke; background: black; color:white" class="text-center">Agencia</th>
+                <th style="border: solid 1px whitesmoke; background: black; color:white" class="text-center">Solicitante</th>
+                <th style="border: solid 1px whitesmoke; background: black; color:white" class="text-center">Autorizado Ventas</th>
+                <th style="border: solid 1px whitesmoke; background: black; color:white" class="text-center">Autorizado Gerencia</th>
+                <th style="border: solid 1px whitesmoke; background: black; color:white" class="text-center"></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr ng-repeat="orden in ordenes">
+                <td class="text-center">{{orden.id}}</td>
+                <td >{{orden.solicitud}}</td>
+                <td class="text-center">{{orden.fecha_solicitud | amDateFormat:'DD/MM/YYYY H:mm'}}</td>
+                <td class="text-center">{{orden.fecha_resolucion | amDateFormat:'DD/MM/YYYY H:mm'}}</td>
+                <td>{{orden.direccion}}</td>
+                <td>{{orden.zona_agencia}}</td>
+                <td>{{orden.nombresolicitante}} {{orden.apellidosolicitante}}</td>
+                <td class="text-center" style="background-color: lightgreen" ng-if="orden.autorizado_2==1"><b> Aprobada</b></td>
+                <td class="text-center" style="background-color: lightsalmon" ng-if="orden.autorizado_2==null"><b>Sin aprobar</b></td>
+                <td class="text-center" style="background-color: lightsalmon" ng-if="orden.autorizado_2==0"><b>Denegada</b></td>
+
+                <td class="text-center" style="background-color: lightgreen" ng-if="orden.autorizado_1==1"><b> Aprobada</b></td>
+                <td class="text-center" style="background-color: lightsalmon" ng-if="orden.autorizado_1==null"><b>Sin aprobar</b></td>
+                <td class="text-center" style="background-color: lightsalmon" ng-if="orden.autorizado_1==0"><b>Denegada</b></td>
+                <td  class="text-center" ><button ng-click="verdetalleorden(orden)" style="border: solid 1px black" class="btn btn-white btn-xs"><i class="fas fa-eye"></i> Ver detalle</button></td>
+            </tr>
+            </tbody>
+        </table>
+
+    </div>
+
+
+    <div class="ibox-footer"  style="background-color: lightgrey" ng-hide="detallesorden">
+        <h2><i class="fas fa-eye"></i> Detalles</h2>
+        <form action="" class="form-horizontal" style="color: black">
+
+            <div class="row" style="margin-top: 15px">
+                <div class="col-lg-10" style="margin-left: 10px">
+                    <div class="form-group">
+                        <label for="">Trabajo solicitado:</label>
+                        <textarea readonly="readonly" ng-model="up_orden.solicitud" class="form-control" name="" id="" cols="30" rows="4">{{up_orden.solicitud}}</textarea>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row" >
+                <div class="col-lg-4" style="margin-left: 10px">
+                    <div class="form-group">
+                        <label for="">Fecha de solicitud: (Creacion de la orden)</label>
+                        <input type="text" ng-model="up_orden.fecha_solicitud | amDateFormat:'DD/MM/YYYY H:mm'" readonly="readonly" class="form-control" value="{{up_orden.fecha_solicitud | amDateFormat:'DD/MM/YYYY H:mm'}}">
+                    </div>
+                </div>
+
+                <div class="col-lg-4" style="margin-left: 10px">
+                    <div class="form-group">
+                        <label for="">Fecha de resolución: (Compromiso con el cliente)</label>
+                        <input type="text" ng-model="up_orden.fecha_resolucion | amDateFormat:'DD/MM/YYYY H:mm'" readonly="readonly" class="form-control" value="{{up_orden.fecha_resolucion | amDateFormat:'DD/MM/YYYY H:mm'}}">
+                    </div>
+                </div>
+            </div>
+
+            <div class="row" >
+                <div class="col-lg-10" style="margin-left: 10px">
+                    <div class="form-group">
+                        <label for="">Direccion:</label>
+                        <textarea readonly="readonly" ng-model="up_orden.direccion"  class="form-control"  cols="30" rows="4">{{up_orden.direccion}}</textarea>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row" >
+                <div class="col-lg-4" style="margin-left: 10px">
+                    <div class="form-group">
+                        <label for="">Solicitante:</label>
+                        <input type="text" readonly="readonly" class="form-control" value="{{up_orden.nombresolicitante +' '+ up_orden.apellidosolicitante}}">
+                    </div>
+                </div>
+
+                <div class="col-lg-4" style="margin-left: 10px">
+                    <div class="form-group">
+                        <label for="">Gerencia:</label>
+                        <input type="text" readonly="readonly" value="{{up_orden.gerencia_solicita}}" class="form-control" ng-model="up_orden.gerencia_solicita">
+                    </div>
+                </div>
+            </div>
+
+            <div class="row" >
+                <div class="col-lg-4" style="margin-left: 10px">
+                    <div class="form-group">
+                        <label for="">Agencia:</label>
+                        <input type="text" readonly="readonly" value="{{up_orden.zona_agencia}}" class="form-control" ng-model="up_orden.zona_agencia">
+                    </div>
+                </div>
+
+                <div class="col-lg-4" style="margin-left: 10px">
+                    <div class="form-group">
+                        <label for="">Contratista:</label>
+                        <input type="text" readonly="readonly" value="{{up_orden.contratista}}" class="form-control" ng-model="up_orden.contratista">
+                    </div>
+                </div>
+            </div>
+
+
+
+            <div class="row" >
+                <div class="col-lg-10" style="margin-left: 10px">
+                    <div class="form-group">
+                        <label for="">Observaciones del solicitante:</label>
+                        <textarea readonly="readonly" ng-model="up_orden.observaciones" class="form-control" name="" id="" cols="30" rows="4">{{up_orden.observaciones}}</textarea>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row" ng-hide="botonaprobarorden">
+                <div class="col-lg-10" style="margin-left: 10px">
+                    <div class="form-group">
+                        <label for="">Observaciones de ejecucion:</label>
+                        <textarea  ng-model="up_orden.observacionejecucion" class="form-control" name="" id="" cols="30" rows="4">{{up_orden.observacionejecucion}}</textarea>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="row" >
+                <div class="col-lg-10" style="margin-left: 10px">
+                    <div class="form-group">
+                        <button ng-click="aprobarOrden(up_orden)" ng-hide="botonaprobarorden" type="button'" class="btn btn-primary btn-lg" style="border: solid 1px black"><i class="fas fa-thumbs-up"></i> Aprobar Orden</button>
+                        <button ng-click="mostrarformdenegarorden()" ng-hide="botondenegarorden" type="button'" class="btn btn-danger btn-lg" style="border: solid 1px black"><i class="fas fa-thumbs-up"></i> Denegar Orden</button>
+
+                    </div>
+                </div>
+            </div>
+
+            <div class="row" ng-hide="formdenegarorden">
+                <div class="col-lg-10" style="margin-left: 10px">
+                    <div class="form-group">
+                        <label for="">Comentario de denegación:</label>
+                        <textarea  ng-model="comentariodenegacion" class="form-control" name="" id="" cols="30" rows="4"></textarea>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row"  ng-hide="formdenegarorden">
+                <div class="col-lg-10" style="margin-left: 10px">
+                    <div class="form-group">
+                        <button ng-click="denegarorden()"  type="button'" class="btn btn-danger btn-lg" style="border: solid 1px black"><i class="fas fa-thumbs-down"></i> Enviar</button>
+                    </div>
+                </div>
+            </div>
+
+        </form>
+    </div>
+    <div class="ibox-footer" ng-hide="alertaorden">
+        <div class="alert alert-success">
+            <h3><i class="fas fa-info-circle"></i> <b>Orden aprobada con exito!</b></h3>
+        </div>
+    </div>
+
+    <div class="ibox-footer" ng-hide="alertaordendenegada">
+        <div class="alert alert-success">
+            <h3><i class="fas fa-info-circle"></i> <b>Orden denegada!</b></h3>
+        </div>
+    </div>
+</div>
