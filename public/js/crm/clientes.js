@@ -220,7 +220,7 @@ app.controller('ShowClientesController',function($scope,$http,DTOptionsBuilder,$
     $scope.verdetallespotencial = function()
     {
         $scope.detalleshistorials = true;
-        $scope.detalleshistorials = false;
+     //   $scope.detalleshistorials = false;
         $scope.detallespotenciales = false;
         $scope.formulariopotencial = true;
       //  $scope.listadopotenciales = true;
@@ -379,6 +379,16 @@ app.controller('ShowClientesController',function($scope,$http,DTOptionsBuilder,$
         });
     };
 
+    $scope.cerrarHistorial = function(){
+        $scope.detalleshistorial = true;
+        $scope.detalleshistorials = true;
+    }
+
+    $scope.cerrardetallespotenciales= function(){
+        $scope.detallespotenciales = true;
+    }
+        
+    
 
     //guardar un contacto para un cliente potencial
     $scope.guardarcontacto = function()
@@ -470,6 +480,8 @@ app.controller('ShowClientesController',function($scope,$http,DTOptionsBuilder,$
     {
         $scope.nuevaatencion = false;
         $scope.detalleshistorial = true;
+        $scope.detalleshistorials = true;
+        $scope.detallespotenciales = true;
         $scope.formatencion.cliente = this.p.empresa;
     };
 

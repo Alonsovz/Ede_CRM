@@ -569,7 +569,8 @@
                                     </div>
                                     
                                          <div style="background-color: ghostwhite;" class="ibox-content" ng-hide="detallespotenciales">
-                                        <form action="" class="form-horizontal">
+                                            <button class="btn btn-danger btn-sm" ng-click="cerrardetallespotenciales()">Cerrar</button>
+                                            <form action="" class="form-horizontal">
                                             <h1><i class="fas fa-pen"></i> Detalles para actualizar</h1>
                                             <div class="row alert alert-info" style="margin-top: 25px">
                                                 <div class="col-lg-2">
@@ -1031,7 +1032,8 @@
                                     
 
                                          <div style="background-color: ghostwhite;border:1px solid black"
-                                          class="ibox-content" ng-hide="detalleshistorial">
+                                          class="ibox-content clientHistorial" ng-hide="detalleshistorial">
+                                          <button class="btn btn-danger btn-sm" ng-click="cerrarHistorial()">Cerrar</button>
                                             <div style="background-color: black;"
                                                 class="col-lg-12"> <h2 style="color: yellow;font-weight: bold;">Historial del cliente :
                                                 <a id="nameCliente" style="color: white;font-weight: bold;"></a></h2> 
@@ -1366,6 +1368,7 @@
 
                             <div style="background-color: ghostwhite;border:1px solid black"
                                           class="ibox-content" ng-hide="detalleshistorials">
+                                          <button class="btn btn-danger btn-sm" ng-click="cerrarHistorial()">Cerrar</button><br><br>
                                             <div style="background-color: black;"
                                                 class="col-lg-12"> <h2 style="color: yellow;font-weight: bold;">Historial del cliente :
                                                 <a id="nameClientes" style="color: white;font-weight: bold;"></a></h2> 
@@ -1506,6 +1509,7 @@
                                          </div>
                             <div class="col-lg-12">
                                 <div style="background-color: ghostwhite;" class="ibox-content" ng-hide="detallespotenciales">
+                                    <button class="btn btn-danger btn-sm" ng-click="cerrardetallespotenciales()">Cerrar</button>
                                     <form action="" class="form-horizontal">
                                         <h1><i class="fas fa-pen"></i> Detalles para actualizar</h1>
                                         <div class="row" style="margin-top: 25px">
